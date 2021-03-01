@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ReablementApp.ViewModels
 {
-    class LoginViewModel
+    class FeedbackViewModel
     {
     }
 }

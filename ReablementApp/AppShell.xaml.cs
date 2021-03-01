@@ -1,4 +1,4 @@
-﻿using ReablementApp.ViewModels;
+﻿
 using ReablementApp.Views;
 using System;
 using System.Collections.Generic;
@@ -11,8 +11,8 @@ namespace ReablementApp
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
-            Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
+            //Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
+            //Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
         }
 
     }
