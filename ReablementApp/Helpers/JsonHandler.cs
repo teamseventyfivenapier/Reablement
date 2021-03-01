@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ReablementApp.ViewModels
+namespace ReablementApp.Helpers
 {
-    class LoginViewModel
+    class JsonHandler
     {
     }
 }

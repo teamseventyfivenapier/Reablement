@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace ReablementApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LoginPage : ContentPage
+    public partial class CurrentGoalPage : ContentPage
     {
-        public LoginPage()
+        public CurrentGoalPage()
         {
             InitializeComponent();
         }

@@ -1,5 +1,4 @@
-﻿using ReablementApp.Services;
-using ReablementApp.Views;
+﻿using ReablementApp.Views;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -13,7 +12,7 @@ namespace ReablementApp
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
+            //DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
         }
 
