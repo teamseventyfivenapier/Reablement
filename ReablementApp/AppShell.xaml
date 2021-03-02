@@ -1,37 +1,104 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
-       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       xmlns:local="clr-namespace:ReablementApp.Views"
-       Title="ReablementApp"
-       x:Class="ReablementApp.AppShell">
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="ReablementApp.AppShell"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:helpers="clr-namespace:ReablementApp.Helpers"
+    xmlns:local="clr-namespace:ReablementApp.Views"
+    Title="ReablementApp">
 
     <!--
         The overall app visual hierarchy is defined here, along with navigation.
-    
+        
         https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/
     -->
 
     <Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
-                <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
-                <Setter Property="Shell.ForegroundColor" Value="White" />
-                <Setter Property="Shell.TitleColor" Value="White" />
+                <Setter Property="Shell.BackgroundColor" Value="#FFFEFF" />
+                <Setter Property="Shell.ForegroundColor" Value="Black" />
+                <Setter Property="Shell.TitleColor" Value="Black" />
                 <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
-                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
-                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource Primary}" />
-                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
-                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
-                <Setter Property="Shell.TabBarTitleColor" Value="White"/>
+                <Setter Property="Shell.UnselectedColor" Value="#B4B4BA" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource TabBarBackground}" />
+                <!--<Setter Property="Shell.TabBarForegroundColor" Value="{StaticResource TabIconSelected}" />-->
+                <Setter Property="Shell.TabBarUnselectedColor" Value="{StaticResource TabIconUnselected}" />
+                <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource TabIconSelected}" />
             </Style>
-            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
-            <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
+            <Style BasedOn="{StaticResource BaseStyle}" TargetType="TabBar" />
+            <Style BasedOn="{StaticResource BaseStyle}" TargetType="FlyoutItem" />
+
         </ResourceDictionary>
     </Shell.Resources>
 
     <TabBar>
-        <ShellContent Title="Clients" Route="ClientsPage" ContentTemplate="{DataTemplate local:ClientsPage}" />
-        <ShellContent Title="ClientDetailsPage" ContentTemplate="{DataTemplate local:ClientDetailsPage}" />
+
+        <Tab
+            Title="Clients"
+            Route="ClientsPage"
+            Shell.NavBarIsVisible="False">
+            <Tab.Icon>
+                <FontImageSource FontFamily="FASolid" Glyph="{x:Static helpers:FAIcons.User}" />
+            </Tab.Icon>
+
+            <ShellContent ContentTemplate="{DataTemplate local:ClientsPage}" />
+        </Tab>
+        <Tab
+            Title="Client Details"
+            Route="ClientDetailsPage"
+            Shell.NavBarIsVisible="False">
+            <Tab.Icon>
+                <FontImageSource FontFamily="FASolid" Glyph="{x:Static helpers:FAIcons.AddressCard}" />
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate local:ClientDetailsPage}" />
+        </Tab>
+        <Tab
+            Title="Goals"
+            Route="GoalsOverviewPage"
+            Shell.NavBarIsVisible="False">
+            <Tab.Icon>
+                <FontImageSource FontFamily="FASolid" Glyph="{x:Static helpers:FAIcons.Bullseye}" />
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate local:GoalsOverviewPage}" />
+        </Tab>
+        <Tab
+            Title="Feedback"
+            Route="FeedbackPage"
+            Shell.NavBarIsVisible="False">
+            <Tab.Icon>
+                <FontImageSource FontFamily="FASolid" Glyph="{x:Static helpers:FAIcons.Comments}" />
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate local:FeedbackPage}" />
+        </Tab>
+        <!--<Tab
+            Title="Programme"
+            Route="ProgressPage"
+            Shell.NavBarIsVisible="False">
+            <Tab.Icon>
+                <FontImageSource FontFamily="FASolid" Glyph="{x:Static helpers:FAIcons.Tasks}" />
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate local:ProgressPage}" />
+        </Tab>
+        <Tab
+            Title="Progress"
+            Route="GoalsPage"
+            Shell.NavBarIsVisible="False">
+            <Tab.Icon>
+                <FontImageSource FontFamily="FASolid" Glyph="{x:Static helpers:FAIcons.Star}" />
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate local:GoalsPage}" />
+        </Tab>-->
+
+        <Tab
+            Title="More"
+            Route="MorePage"
+            Shell.NavBarIsVisible="False">
+            <Tab.Icon>
+                <FontImageSource FontFamily="FASolid" Glyph="{x:Static helpers:FAIcons.GripLines}" />
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate local:MorePage}" />
+        </Tab>
     </TabBar>
 
     <!--
@@ -39,7 +106,7 @@
         await Shell.Current.GoToAsync("//LoginPage");
     -->
     <TabBar>
-        <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
+        <ShellContent ContentTemplate="{DataTemplate local:LoginPage}" Route="LoginPage" />
     </TabBar>
 
 
