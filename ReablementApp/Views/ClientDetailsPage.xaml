@@ -3,7 +3,13 @@
     x:Class="ReablementApp.Views.ClientDetailsPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    BackgroundColor="#FFFFE5">
+    xmlns:helpers="clr-namespace:ReablementApp.Helpers"
+    xmlns:viewmodels="clr-namespace:ReablementApp.ViewModels"
+    x:DataType="viewmodels:ClientDetailsViewModel"
+    BackgroundColor="{StaticResource Background}">
+    <ContentPage.BindingContext>
+        <viewmodels:ClientDetailsViewModel />
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
             <Label
@@ -12,8 +18,7 @@
                 TextColor="Black"
                 FontSize="Large"
                 VerticalOptions="CenterAndExpand" />
-
-            <Button Text="button" BackgroundColor="Blue" TextColor="Yellow" FontSize="Large" />
+            <Button Text="button" BackgroundColor="{StaticResource ButtonBlue}" TextColor="Black" FontSize="Large" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

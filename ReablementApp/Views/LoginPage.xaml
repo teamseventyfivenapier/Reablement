@@ -2,13 +2,96 @@
 <ContentPage
     x:Class="ReablementApp.Views.LoginPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    BackgroundColor="#f5f5f5">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="primary">#528ECF</Color>
+            <Style x:Key="InvalidStyle" TargetType="Entry">
+                <Setter Property="TextColor" Value="Red" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <Label
-                HorizontalOptions="CenterAndExpand"
-                Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout Spacing="10">
+
+                <Label
+                    FontSize="40"
+                    HeightRequest="110"
+                    HorizontalOptions="FillAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Text="Reablement"
+                    TextColor="Black"
+                    BackgroundColor="#9EB2CC"
+                    VerticalTextAlignment="Center" />
+
+                <Entry
+                    x:Name="EntUserName"
+                    Margin="20,40,20,0"
+                    HeightRequest="50"
+                    Placeholder="Enter User Name">
+                    <Entry.Behaviors>
+                        <xct:EmailValidationBehavior InvalidStyle="{StaticResource InvalidStyle}" />
+                    </Entry.Behaviors>
+
+                </Entry>
+
+                <Entry
+                    x:Name="EntPassword"
+                    Margin="20,0,20,0"
+                    HeightRequest="50"
+                    IsPassword="true"
+                    Placeholder="Password" />
+
+                <Button
+                    x:Name="BtnLogin"
+                    Margin="20,0,20,0"
+                    BackgroundColor="#9EB2CC"
+                    BorderColor="Black"
+                    BorderWidth="1"
+                    Clicked="BtnLogin_Clicked"
+                    HeightRequest="50"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Login"
+                    TextColor="Black" />
+
+                <Label
+                    Margin="0,0,20,0"
+                    FontSize="Small"
+                    HorizontalOptions="End"
+                    Text="Remember Details"
+                    TextColor="Black" />
+
+                <Switch
+                    x:Name="LoginSwitch"
+                    Margin="0,0,20,0"
+                    HorizontalOptions="End"
+                    OnColor="#C1DBE0"
+                    ThumbColor="Black" />
+
+                <Label
+                    FontSize="Small"
+                    HorizontalOptions="Center"
+                    Text="Forgot password"
+                    TextColor="Black" />
+
+                <Button
+                    Margin="20,0,20,0"
+                    BackgroundColor="#A2BCC5"
+                    BorderColor="Black"
+                    BorderWidth="1"
+                    HeightRequest="50"
+                    Text="Create Account"
+                    TextColor="Black" />
+
+                <!--  HorizontalOptions="FillAndExpand"  -->
+
+
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
+
