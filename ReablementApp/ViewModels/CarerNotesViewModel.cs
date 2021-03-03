@@ -1,10 +1,11 @@
-﻿using System;
+﻿using MvvmHelpers;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ReablementApp.ViewModels
 {
-    class CarerNotesViewModel
+    public class CarerNotesViewModel : BaseViewModel
     {
     }
 }
