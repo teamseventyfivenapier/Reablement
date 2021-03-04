@@ -2,13 +2,58 @@
 <ContentPage
     x:Class="ReablementApp.Views.ClientHomePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:helpers="clr-namespace:ReablementApp.Helpers"
+    xmlns:viewmodels="clr-namespace:ReablementApp.ViewModels"
+    x:DataType="viewmodels:ClientHomeViewModel"
+    BackgroundColor="{StaticResource Background}">
+    
+    <ContentPage.BindingContext>
+        <viewmodels:ClientHomeViewModel />
+    </ContentPage.BindingContext>
+    
     <ContentPage.Content>
-        <StackLayout>
-            <Label
-                HorizontalOptions="CenterAndExpand"
-                Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Frame BackgroundColor="#528ECF">
+                <StackLayout>
+                    <Label
+                        Text="Welcome"
+                        TextColor="Black"
+                        FontSize="Large"
+                        HorizontalOptions="CenterAndExpand"/>
+                    <Image>
+                        <Image.Source>
+                            <FontImageSource
+                                FontFamily="FASolid" 
+                                Glyph="{x:Static helpers:FAIcons.User}"
+                                Size="50"
+                                Color="LightYellow"/>
+                        </Image.Source>
+                    </Image>
+                    <Label
+                        Text="User"
+                        TextColor="Black"
+                        FontSize="Large"
+                        HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+            </Frame>
+            <CollectionView
+                ItemsLayout="HorizontalList"
+                Grid.Row="1"
+                BackgroundColor="Red">
+            </CollectionView>
+            <StackLayout Grid.Row="2">
+                <Label
+                    Text="Motivational Quote"
+                    TextColor="Black"
+                    FontSize="Large"
+                    HorizontalOptions="CenterAndExpand"/>
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
