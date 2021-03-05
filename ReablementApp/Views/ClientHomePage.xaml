@@ -16,14 +16,15 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="150"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="100"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Frame BackgroundColor="#528ECF">
+
+            <Frame BackgroundColor="{StaticResource Primary}">
                 <StackLayout>
                     <Label
                         Text="Welcome"
-                        TextColor="Black"
+                        TextColor="{StaticResource TextPrimary}"
                         FontSize="Large"
                         HorizontalOptions="CenterAndExpand"/>
                     <Image>
@@ -37,23 +38,65 @@
                     </Image>
                     <Label
                         Text="User"
-                        TextColor="Black"
+                        TextColor="{StaticResource TextPrimary}"
                         FontSize="Large"
                         HorizontalOptions="CenterAndExpand"/>
                 </StackLayout>
             </Frame>
-            <CollectionView
-                ItemsLayout="HorizontalList"
-                Grid.Row="1"
-                BackgroundColor="Red">
-            </CollectionView>
-            <StackLayout Grid.Row="2">
+
+            <StackLayout Grid.Row="1" BackgroundColor="{StaticResource Background}">
                 <Label
-                    Text="Motivational Quote"
-                    TextColor="Black"
+                    Text="Day 1"
+                    TextColor="{StaticResource TextPrimary}"
                     FontSize="Large"
                     HorizontalOptions="CenterAndExpand"/>
+                <ProgressBar 
+                    Progress="0.5" 
+                    ProgressColor="Green"/>
+                <Label
+                    Text="Rehab Progress"
+                    TextColor="{StaticResource TextSecondary}"
+                    FontSize="Large"
+                    FontFamily=""
+                    HorizontalOptions="CenterAndExpand"/>
             </StackLayout>
+            
+            <CollectionView Grid.Row="2" ItemsLayout="HorizontalList" VerticalOptions="Start">
+                <CollectionView.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Item One</x:String>
+                        <x:String>Item Two</x:String>
+                        <x:String>Item Three</x:String>
+                        <x:String>Item Four</x:String>
+                        <x:String>Item Five</x:String>
+                    </x:Array>
+                </CollectionView.ItemsSource>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10,0,0,30">
+                            <Frame 
+                                WidthRequest="380" 
+                                HasShadow="False" 
+                                Padding="0" 
+                                BackgroundColor="LightGray"
+                                IsClippedToBounds="True">
+                                <Grid RowDefinitions="400,Auto">
+                                    <BoxView 
+                                        Grid.Row="0" 
+                                        BackgroundColor="Black"
+                                        Margin="10"/>
+                                    <Label 
+                                        Grid.Row="1"
+                                        Text="Motivational Quote"
+                                        FontSize="Large"
+                                        Margin="0"
+                                        HorizontalTextAlignment="Center"/>
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
