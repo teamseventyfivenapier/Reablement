@@ -45,7 +45,7 @@
                 </StackLayout>
             </Frame>
 
-            <StackLayout Grid.Row="1" BackgroundColor="{StaticResource Background}">
+            <StackLayout Grid.Row="1" VerticalOptions="CenterAndExpand" BackgroundColor="{StaticResource Background}">
                 <Label
                     Text="Day 1"
                     TextColor="{StaticResource TextPrimary}"
@@ -55,10 +55,9 @@
                     Progress="0.5" 
                     ProgressColor="Green"/>
                 <Label
-                    Text="Rehab Progress"
+                    Text="Rehabilitation Progress"
                     TextColor="{StaticResource TextSecondary}"
-                    FontSize="Large"
-                    FontFamily=""
+                    FontSize="Medium"
                     HorizontalOptions="CenterAndExpand"/>
             </StackLayout>
 
@@ -66,7 +65,8 @@
                 Grid.Row="2" 
                 ItemsLayout="HorizontalList"
                 ItemsSource="{Binding Picture}"
-                VerticalOptions="Start">
+                VerticalOptions="Center"
+                HorizontalOptions="Center">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Picture">
                         <Grid Padding="10,0,0,30">
@@ -74,18 +74,18 @@
                                 WidthRequest="380" 
                                 HasShadow="False" 
                                 Padding="0" 
-                                BackgroundColor="LightGray"
+                                BackgroundColor="{StaticResource Background}"
                                 IsClippedToBounds="True">
-                                <Grid RowDefinitions="400,Auto">
+                                <Grid RowDefinitions="350,Auto">
                                     <Image 
                                         Grid.Row="0" 
                                         Source="{Binding Image}"
-                                        Margin="10"/>
+                                        Margin="0,0,0,0"/>
                                     <Label 
                                         Grid.Row="1"
                                         Text="{Binding Quote}"
                                         FontSize="Large"
-                                        Margin="0"
+                                        Margin="0,0,0,0"                                      
                                         HorizontalTextAlignment="Center"/>
                                 </Grid>
                             </Frame>
