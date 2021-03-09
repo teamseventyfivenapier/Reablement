@@ -109,5 +109,9 @@
         <ShellContent ContentTemplate="{DataTemplate local:LoginPage}" Route="LoginPage" />
     </TabBar>
 
+    <TabBar>
+        <ShellContent ContentTemplate="{DataTemplate local:ClientHomePage}" Route="ClientHomePage"/>
+    </TabBar>
+
 
 </Shell>

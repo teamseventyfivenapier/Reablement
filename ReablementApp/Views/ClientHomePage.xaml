@@ -2,13 +2,97 @@
 <ContentPage
     x:Class="ReablementApp.Views.ClientHomePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:helpers="clr-namespace:ReablementApp.Helpers"
+    xmlns:viewmodels="clr-namespace:ReablementApp.ViewModels"
+    xmlns:model="clr-namespace:ReablementApp.Models"
+    x:DataType="viewmodels:ClientHomeViewModel"
+    BackgroundColor="{StaticResource Background}">
+    
+    <ContentPage.BindingContext>
+        <viewmodels:ClientHomeViewModel />
+    </ContentPage.BindingContext>
+    
     <ContentPage.Content>
-        <StackLayout>
-            <Label
-                HorizontalOptions="CenterAndExpand"
-                Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Frame BackgroundColor="{StaticResource Primary}">
+                <StackLayout>
+                    <Label
+                        Text="Welcome"
+                        TextColor="{StaticResource TextPrimary}"
+                        FontSize="Large"
+                        HorizontalOptions="CenterAndExpand"/>
+                    <Image>
+                        <Image.Source>
+                            <FontImageSource
+                                FontFamily="FASolid" 
+                                Glyph="{x:Static helpers:FAIcons.User}"
+                                Size="50"
+                                Color="LightYellow"/>
+                        </Image.Source>
+                    </Image>
+                    <Label
+                        Text="User"
+                        TextColor="{StaticResource TextPrimary}"
+                        FontSize="Large"
+                        HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+            </Frame>
+
+            <StackLayout Grid.Row="1" VerticalOptions="CenterAndExpand" BackgroundColor="{StaticResource Background}">
+                <Label
+                    Text="Day 1"
+                    TextColor="{StaticResource TextPrimary}"
+                    FontSize="Large"
+                    HorizontalOptions="CenterAndExpand"/>
+                <ProgressBar 
+                    Progress="0.5" 
+                    ProgressColor="Green"/>
+                <Label
+                    Text="Rehabilitation Progress"
+                    TextColor="{StaticResource TextSecondary}"
+                    FontSize="Medium"
+                    HorizontalOptions="CenterAndExpand"/>
+            </StackLayout>
+
+            <CollectionView 
+                Grid.Row="2" 
+                ItemsLayout="HorizontalList"
+                ItemsSource="{Binding Picture}"
+                VerticalOptions="Center"
+                HorizontalOptions="Center">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Picture">
+                        <Grid Padding="10,0,0,30">
+                            <Frame 
+                                WidthRequest="380" 
+                                HasShadow="False" 
+                                Padding="0" 
+                                BackgroundColor="{StaticResource Background}"
+                                IsClippedToBounds="True">
+                                <Grid RowDefinitions="350,Auto">
+                                    <Image 
+                                        Grid.Row="0" 
+                                        Source="{Binding Image}"
+                                        Margin="0,0,0,0"/>
+                                    <Label 
+                                        Grid.Row="1"
+                                        Text="{Binding Quote}"
+                                        FontSize="Large"
+                                        Margin="0,0,0,0"                                      
+                                        HorizontalTextAlignment="Center"/>
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
