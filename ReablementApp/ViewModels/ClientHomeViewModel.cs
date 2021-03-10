@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace ReablementApp.ViewModels
 {
-    public class ClientHomeViewModel : BaseViewModel
+    public class ClientHomeViewModel : ViewModelBase
     {
         public ObservableRangeCollection<Picture> Picture { get; set; }
 

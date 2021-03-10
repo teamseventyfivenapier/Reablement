@@ -13,12 +13,10 @@ namespace ReablementApp
             InitializeComponent();
 
             //DependencyService.Register<MockDataStore>();
-            // MainPage = new AppShell();
+            //MainPage = new AppShell();
 
             //TODO if current user is say manager then load certain app shell??...
-            //MainPage = new LoginPage();
-
-            MainPage = new ClientHomePage();
+            MainPage = new LoginPage();
         }
 
         protected override void OnStart()
