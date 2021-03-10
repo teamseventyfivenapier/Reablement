@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ReablementApp.ViewModels
 {
-    public class GoalsOverviewViewModel : BaseViewModel
+    public class GoalsOverviewViewModel : ViewModelBase
     {
     }
 }
