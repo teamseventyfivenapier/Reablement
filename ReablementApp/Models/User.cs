@@ -4,7 +4,9 @@ using System.Text;
 
 namespace ReablementApp.Models
 {
-    class User
+    public static class User
     {
+        public static string CurrentUser;
+
     }
 }

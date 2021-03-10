@@ -13,6 +13,7 @@
         https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/
     -->
 
+
     <Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
@@ -32,7 +33,50 @@
         </ResourceDictionary>
     </Shell.Resources>
 
-    <TabBar>
+    <TabBar x:Name="ManagerTabs">
+
+        <Tab
+            Title="Overview"
+            Route="ManagerOverviewPage"
+            Shell.NavBarIsVisible="False">
+            <Tab.Icon>
+                <FontImageSource FontFamily="FASolid" Glyph="{x:Static helpers:FAIcons.ChartPie}" />
+            </Tab.Icon>
+
+            <ShellContent ContentTemplate="{DataTemplate local:ManagerOverviewPage}" />
+        </Tab>
+        <Tab
+            Title="Clients"
+            Route="ClientsPage"
+            Shell.NavBarIsVisible="False">
+            <Tab.Icon>
+                <FontImageSource FontFamily="FASolid" Glyph="{x:Static helpers:FAIcons.User}" />
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate local:ClientsPage}" />
+        </Tab>
+        <Tab
+            Title="Client Details"
+            Route="ClientDetailsPage"
+            Shell.NavBarIsVisible="False">
+            <Tab.Icon>
+                <FontImageSource FontFamily="FASolid" Glyph="{x:Static helpers:FAIcons.AddressCard}" />
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate local:ClientDetailsPage}" />
+        </Tab>
+
+        <Tab
+            Title="More"
+            Route="MorePage"
+            Shell.NavBarIsVisible="False">
+            <Tab.Icon>
+                <FontImageSource FontFamily="FASolid" Glyph="{x:Static helpers:FAIcons.GripLines}" />
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate local:MorePage}" />
+        </Tab>
+
+    </TabBar>
+
+    <TabBar x:Name="OTTabs">
 
         <Tab
             Title="Clients"
@@ -71,25 +115,106 @@
             </Tab.Icon>
             <ShellContent ContentTemplate="{DataTemplate local:FeedbackPage}" />
         </Tab>
-        <!--<Tab
-            Title="Programme"
-            Route="ProgressPage"
+        <Tab
+            Title="More"
+            Route="MorePage"
             Shell.NavBarIsVisible="False">
             <Tab.Icon>
-                <FontImageSource FontFamily="FASolid" Glyph="{x:Static helpers:FAIcons.Tasks}" />
+                <FontImageSource FontFamily="FASolid" Glyph="{x:Static helpers:FAIcons.GripLines}" />
             </Tab.Icon>
-            <ShellContent ContentTemplate="{DataTemplate local:ProgressPage}" />
+            <ShellContent ContentTemplate="{DataTemplate local:MorePage}" />
+        </Tab>
+    </TabBar>
+
+    <TabBar x:Name="ClientTabs">
+
+        <Tab
+            Title="Home"
+            Route="ClientHomePage"
+            Shell.NavBarIsVisible="False">
+            <Tab.Icon>
+                <FontImageSource FontFamily="FASolid" Glyph="{x:Static helpers:FAIcons.Home}" />
+            </Tab.Icon>
+
+            <ShellContent ContentTemplate="{DataTemplate local:ClientHomePage}" />
         </Tab>
         <Tab
-            Title="Progress"
-            Route="GoalsPage"
+            Title="Goals"
+            Route="GoalsOverviewPage"
             Shell.NavBarIsVisible="False">
             <Tab.Icon>
-                <FontImageSource FontFamily="FASolid" Glyph="{x:Static helpers:FAIcons.Star}" />
+                <FontImageSource FontFamily="FASolid" Glyph="{x:Static helpers:FAIcons.Bullseye}" />
             </Tab.Icon>
-            <ShellContent ContentTemplate="{DataTemplate local:GoalsPage}" />
-        </Tab>-->
+            <ShellContent ContentTemplate="{DataTemplate local:GoalsOverviewPage}" />
+        </Tab>
+        <Tab
+            Title="Achievements"
+            Route="AchievementsPage"
+            Shell.NavBarIsVisible="False">
+            <Tab.Icon>
+                <FontImageSource FontFamily="FASolid" Glyph="{x:Static helpers:FAIcons.Trophy}" />
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate local:AchievementsPage}" />
+        </Tab>
+        <Tab
+            Title="Feedback"
+            Route="FeedbackPage"
+            Shell.NavBarIsVisible="False">
+            <Tab.Icon>
+                <FontImageSource FontFamily="FASolid" Glyph="{x:Static helpers:FAIcons.Comments}" />
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate local:FeedbackPage}" />
+        </Tab>
+        <Tab
+            Title="More"
+            Route="MorePage"
+            Shell.NavBarIsVisible="False">
+            <Tab.Icon>
+                <FontImageSource FontFamily="FASolid" Glyph="{x:Static helpers:FAIcons.GripLines}" />
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate local:MorePage}" />
+        </Tab>
+    </TabBar>
 
+    <TabBar x:Name="CarerTabs">
+
+        <Tab
+            Title="Clients"
+            Route="ClientsPage"
+            Shell.NavBarIsVisible="False">
+            <Tab.Icon>
+                <FontImageSource FontFamily="FASolid" Glyph="{x:Static helpers:FAIcons.User}" />
+            </Tab.Icon>
+
+            <ShellContent ContentTemplate="{DataTemplate local:ClientsPage}" />
+        </Tab>
+        <Tab
+            Title="Goals"
+            Route="GoalsOverviewPage"
+            Shell.NavBarIsVisible="False">
+            <Tab.Icon>
+                <FontImageSource FontFamily="FASolid" Glyph="{x:Static helpers:FAIcons.Bullseye}" />
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate local:GoalsOverviewPage}" />
+        </Tab>
+        <Tab
+            Title="Notes"
+            Route="CarerNotesPage"
+            Shell.NavBarIsVisible="False">
+            <Tab.Icon>
+                <FontImageSource FontFamily="FASolid" Glyph="{x:Static helpers:FAIcons.Clipboard}" />
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate local:CarerNotesPage}" />
+        </Tab>
+        <Tab
+            Title="Feedback"
+            Route="FeedbackPage"
+            Shell.NavBarIsVisible="False">
+            <Tab.Icon>
+                <FontImageSource FontFamily="FASolid" Glyph="{x:Static helpers:FAIcons.Comments}" />
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate local:FeedbackPage}" />
+        </Tab>
         <Tab
             Title="More"
             Route="MorePage"
@@ -105,13 +230,18 @@
         If you would like to navigate to this content you can do so by calling
         await Shell.Current.GoToAsync("//LoginPage");
     -->
-    <TabBar>
-        <ShellContent ContentTemplate="{DataTemplate local:LoginPage}" Route="LoginPage" />
-    </TabBar>
 
-    <TabBar>
-        <ShellContent ContentTemplate="{DataTemplate local:ClientHomePage}" Route="ClientHomePage"/>
-    </TabBar>
+
+
+
+    <ShellItem Route="login">
+        <ShellContent ContentTemplate="{DataTemplate local:LoginPage}" />
+    </ShellItem>
+
+
+    <!--<TabBar>
+        <ShellContent ContentTemplate="{DataTemplate local:LoginPage}" Route="LoginPage" />
+    </TabBar>-->
 
 
 </Shell>
