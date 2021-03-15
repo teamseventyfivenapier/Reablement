@@ -2,13 +2,104 @@
 <ContentPage
     x:Class="ReablementApp.Views.GoalsOverviewPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:helpers="clr-namespace:ReablementApp.Helpers"
+    xmlns:viewmodels="clr-namespace:ReablementApp.ViewModels"
+    xmlns:model="clr-namespace:ReablementApp.Models"
+    x:DataType="viewmodels:GoalsOverviewViewModel"
+    BackgroundColor="{StaticResource Background}">
+
+    <ContentPage.BindingContext>
+        <viewmodels:GoalsOverviewViewModel/>
+    </ContentPage.BindingContext>
+
     <ContentPage.Content>
-        <StackLayout>
-            <Label
-                HorizontalOptions="CenterAndExpand"
-                Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Frame BackgroundColor="{StaticResource Primary}">
+                <StackLayout>
+                    <Label
+                        Text="Goals"
+                        TextColor="{StaticResource TextPrimary}"
+                        FontSize="Large"
+                        HorizontalOptions="CenterAndExpand"/>
+                    <Image>
+                        <Image.Source>
+                            <FontImageSource
+                                FontFamily="FASolid" 
+                                Glyph="{x:Static helpers:FAIcons.User}"
+                                Size="50"
+                                Color="LightYellow"/>
+                        </Image.Source>
+                    </Image>
+                    <Label
+                        Text="User"
+                        TextColor="{StaticResource TextPrimary}"
+                        FontSize="Large"
+                        HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+            </Frame>
+            
+            <Button
+                Grid.Row="1"
+                    x:Name="btnAddGoal"
+                    BackgroundColor="{StaticResource Primary}"
+                    BorderColor="Black"
+                    BorderWidth="0.5"
+                    Clicked="btnAddGoal_Clicked"
+                    HorizontalOptions="Center"
+                    Text="Add Goal"
+                    TextColor="Black"/>
+            
+            <ListView
+                Grid.Row="2"
+                SelectedItem="{Binding }"
+                CachingStrategy="RecycleElement"
+                BackgroundColor="Transparent" 
+                ItemsSource="{Binding }" 
+                IsGroupingEnabled="True" 
+                GroupDisplayBinding="{Binding Key}" 
+                HasUnevenRows="True" 
+                IsPullToRefreshEnabled="True"
+                SeparatorVisibility="None">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Delete" IsDestructive="True"/>
+                            </ViewCell.ContextActions>
+                            <Grid Padding="10">
+                                <Frame CornerRadius="20" HasShadow="True">
+                                    <StackLayout Orientation="Horizontal">
+                                        <StackLayout VerticalOptions="Center">
+                                            <Label VerticalOptions="Center" FontSize="Large" Text="Test Goal"/>
+                                            <ProgressBar 
+                                                Progress="0.5"
+                                                ProgressColor="Green"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+                <ListView.Header>
+                    <StackLayout Orientation="Horizontal">
+                        <Label 
+                            HorizontalOptions="Center"
+                            Text="Current Goals"
+                            FontSize="Large"
+                            TextColor="{StaticResource TextPrimary}"/>
+                    </StackLayout>
+                </ListView.Header>
+            </ListView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

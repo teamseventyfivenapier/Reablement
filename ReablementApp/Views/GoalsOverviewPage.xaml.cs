@@ -16,5 +16,10 @@ namespace ReablementApp.Views
         {
             InitializeComponent();
         }
+
+        private void btnAddGoal_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }
