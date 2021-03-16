@@ -21,5 +21,18 @@ namespace ReablementApp.Views
         {
 
         }
+
+        //private async void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        //{
+        //    var goal = ((ListView)sender).SelectedItem as Models.Goal;
+        //    if (goal == null)
+        //        return;
+        //    await DisplayAlert("Goal Selected", goal.Name, "OK");
+        //}
+
+        //private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        //{
+        //    ((ListView)sender).SelectedItem = null;
+        //}
     }
 }

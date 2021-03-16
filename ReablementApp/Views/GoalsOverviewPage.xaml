@@ -7,7 +7,8 @@
     xmlns:viewmodels="clr-namespace:ReablementApp.ViewModels"
     xmlns:model="clr-namespace:ReablementApp.Models"
     x:DataType="viewmodels:GoalsOverviewViewModel"
-    BackgroundColor="{StaticResource Background}">
+    BackgroundColor="{StaticResource Background}"
+    x:Name="GoalsPage">
 
     <ContentPage.BindingContext>
         <viewmodels:GoalsOverviewViewModel/>
@@ -17,7 +18,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="150"/>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="40"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
@@ -47,38 +48,53 @@
             
             <Button
                 Grid.Row="1"
-                    x:Name="btnAddGoal"
-                    BackgroundColor="{StaticResource Primary}"
-                    BorderColor="Black"
-                    BorderWidth="0.5"
-                    Clicked="btnAddGoal_Clicked"
-                    HorizontalOptions="Center"
-                    Text="Add Goal"
-                    TextColor="Black"/>
-            
+                x:Name="btnAddGoal"
+                BackgroundColor="{StaticResource Primary}"
+                BorderColor="Black"
+                BorderWidth="0.3"
+                Clicked="btnAddGoal_Clicked"
+                HorizontalOptions="End"               
+                VerticalOptions="CenterAndExpand"
+                Text="Add Goal"
+                TextColor="{StaticResource TextPrimary}"/>
+            <Label 
+                Grid.Row="1"
+                HorizontalOptions="CenterAndExpand"
+                Text="Current Goals"
+                FontSize="Large"
+                TextColor="{StaticResource TextPrimary}"/>
+
             <ListView
                 Grid.Row="2"
-                SelectedItem="{Binding }"
                 CachingStrategy="RecycleElement"
-                BackgroundColor="Transparent" 
-                ItemsSource="{Binding }" 
+                BackgroundColor="Transparent"            
                 IsGroupingEnabled="True" 
-                GroupDisplayBinding="{Binding Key}" 
                 HasUnevenRows="True" 
                 IsPullToRefreshEnabled="True"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                RefreshCommand="{Binding RefreshCommand}"
                 SeparatorVisibility="None">
+                <!--ItemsSource="{Binding }"-->
+                <!--SelectedItem="{Binding SelectedGoal, Mode=TwoWay}"-->
+
+                <ListView.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>test</x:String>
+                    </x:Array>
+                </ListView.ItemsSource>
 
                 <ListView.ItemTemplate>
+                    <!--x:DataType="model:Goal"-->
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.ContextActions>
                                 <MenuItem Text="Delete" IsDestructive="True"/>
                             </ViewCell.ContextActions>
                             <Grid Padding="10">
-                                <Frame CornerRadius="20" HasShadow="True">
+                                <Frame CornerRadius="10" HasShadow="True">
                                     <StackLayout Orientation="Horizontal">
                                         <StackLayout VerticalOptions="Center">
-                                            <Label VerticalOptions="Center" FontSize="Large" Text="Test Goal"/>
+                                            <Label VerticalOptions="Center" FontSize="Large" Text="Current Goal"/>
                                             <ProgressBar 
                                                 Progress="0.5"
                                                 ProgressColor="Green"/>
@@ -89,16 +105,6 @@
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-
-                <ListView.Header>
-                    <StackLayout Orientation="Horizontal">
-                        <Label 
-                            HorizontalOptions="Center"
-                            Text="Current Goals"
-                            FontSize="Large"
-                            TextColor="{StaticResource TextPrimary}"/>
-                    </StackLayout>
-                </ListView.Header>
             </ListView>
         </Grid>
     </ContentPage.Content>
