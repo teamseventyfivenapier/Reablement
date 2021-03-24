@@ -4,11 +4,42 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="CenterAndExpand">
-            <Label Text="Goal"/>
-            <Image x:Name="currentImage"/>
-            <Label x:Name="currentGoal"/>
-            <Label x:Name="currentTask"/>
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Frame BackgroundColor="{StaticResource Primary}">
+                <StackLayout>
+                    <Label
+                            Text="Current Goal"
+                            TextColor="{StaticResource TextPrimary}"
+                            FontSize="Large"
+                            HorizontalOptions="CenterAndExpand"/>
+                    <Image>
+                        <Image.Source>
+                            <FontImageSource
+                                    FontFamily="FASolid" 
+                                    Glyph="{x:Static helpers:FAIcons.User}"
+                                    Size="50"
+                                    Color="LightYellow"/>
+                        </Image.Source>
+                    </Image>
+                    <Label
+                            Text="User"
+                            TextColor="{StaticResource TextPrimary}"
+                            FontSize="Large"
+                            HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+            </Frame>
+
+            <StackLayout HorizontalOptions="CenterAndExpand" Grid.Row="1">
+                <Label Text="Goal" FontSize="Large" TextColor="{StaticResource Primary}"/>
+                <Entry x:Name="currentGoal"/>
+                <Label Text="Tasks" FontSize="Large" TextColor="{StaticResource Primary}"/>
+                <Entry x:Name="currentTask"/>
+                <Button x:Name="btnUpdateGoal" Text="Update" TextColor="{StaticResource TextPrimary}" BackgroundColor="{StaticResource Primary}"/>
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

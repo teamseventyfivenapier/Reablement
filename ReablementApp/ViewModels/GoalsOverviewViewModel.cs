@@ -23,11 +23,11 @@ namespace ReablementApp.ViewModels
             //AddGoalCommand = new AsyncCommand<GoalModel>(AddGoal);
 
             GoalList = new ObservableRangeCollection<GoalModel>();
-            GoalList.Add(new GoalModel { GoalName = "Make Dinner", Image = "\uf005", Tasks = "Go to kichen, Get pots and pans, Get ingrediants, Cook." });
-            GoalList.Add(new GoalModel { GoalName = "Make Dinner", Image = "\uf005", Tasks = "Go to kichen, Get pots and pans, Get ingrediants, Cook." });
-            GoalList.Add(new GoalModel { GoalName = "Make Dinner", Image = "\uf005", Tasks = "Go to kichen, Get pots and pans, Get ingrediants, Cook." });
-            GoalList.Add(new GoalModel { GoalName = "Make Dinner", Image = "\uf005", Tasks = "Go to kichen, Get pots and pans, Get ingrediants, Cook." });
-            GoalList.Add(new GoalModel { GoalName = "Make Dinner", Image = "\uf005", Tasks = "Go to kichen, Get pots and pans, Get ingrediants, Cook." });
+            GoalList.Add(new GoalModel { GoalName = "Make Dinner", Tasks = "Go to kichen, Get pots and pans, Get ingrediants, Cook." });
+            GoalList.Add(new GoalModel { GoalName = "Make Dinner", Tasks = "Go to kichen, Get pots and pans, Get ingrediants, Cook." });
+            GoalList.Add(new GoalModel { GoalName = "Make Dinner", Tasks = "Go to kichen, Get pots and pans, Get ingrediants, Cook." });
+            GoalList.Add(new GoalModel { GoalName = "Make Dinner", Tasks = "Go to kichen, Get pots and pans, Get ingrediants, Cook." });
+            GoalList.Add(new GoalModel { GoalName = "Make Dinner", Tasks = "Go to kichen, Get pots and pans, Get ingrediants, Cook." });
         }
 
         //public void AddGoal(GoalModel GoalName)
