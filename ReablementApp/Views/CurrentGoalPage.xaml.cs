@@ -12,9 +12,15 @@ namespace ReablementApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CurrentGoalPage : ContentPage
     {
-        public CurrentGoalPage()
+        public CurrentGoalPage(string GoalName, string Task, string source)
         {
             InitializeComponent();
+            currentGoal.Text = GoalName;
+            currentTask.Text = Task;
+            currentImage.Source = new UriImageSource()
+            {
+                Uri = new Uri(source)
+            };
         }
     }
 }

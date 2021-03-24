@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ReablementApp.Models;
+using ReablementApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,20 +17,23 @@ namespace ReablementApp.Views
         public GoalsOverviewPage()
         {
             InitializeComponent();
+            //BindingContext = new GoalsOverviewViewModel();
         }
 
-        private void btnAddGoal_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
-        //private async void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        //private void btnAddGoal_Clicked(object sender, EventArgs e)
         //{
-        //    var goal = ((ListView)sender).SelectedItem as Models.Goal;
-        //    if (goal == null)
-        //        return;
-        //    await DisplayAlert("Goal Selected", goal.Name, "OK");
+
         //}
+
+        private async void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            var goalDetails = e.SelectedItem as GoalModel;
+            await Navigation.PushAsync(new CurrentGoalPage(goalDetails.GoalName, goalDetails.Image, goalDetails.Tasks));
+            //var goal = ((ListView)sender).SelectedItem as Models.GoalModel;
+            //if (goal == null)
+            //    return;
+            //await DisplayAlert("Goal Selected", goal.GoalName, "OK");
+        }
 
         //private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
         //{

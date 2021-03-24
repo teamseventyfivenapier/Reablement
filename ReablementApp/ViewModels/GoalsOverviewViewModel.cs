@@ -1,25 +1,39 @@
 ﻿using MvvmHelpers;
 using MvvmHelpers.Commands;
+using ReablementApp.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace ReablementApp.ViewModels
 {
     public class GoalsOverviewViewModel : ViewModelBase
     {
-        //public ObservableRangeCollection<Goal> Goal { get; set; }
+        //public ICommand AddGoalCommand => new Command(AddGoal);
+        public ObservableRangeCollection<GoalModel> GoalList { get; set; }
         public AsyncCommand RefreshCommand { get; }
+        //public AsyncCommand<GoalModel> AddGoalCommand { get; }
 
         public GoalsOverviewViewModel()
         {
-            //Goal = new ObservableRangeCollection<Goal>();
             RefreshCommand = new AsyncCommand(Refresh);
+            //AddGoalCommand = new AsyncCommand<GoalModel>(AddGoal);
 
-            //Goal.Add(new Goal { GoalName = "Make Dinner", GoalProgress = goalprogress });
+            GoalList = new ObservableRangeCollection<GoalModel>();
+            GoalList.Add(new GoalModel { GoalName = "Make Dinner", Image = "\uf005", Tasks = "Go to kichen, Get pots and pans, Get ingrediants, Cook." });
+            GoalList.Add(new GoalModel { GoalName = "Make Dinner", Image = "\uf005", Tasks = "Go to kichen, Get pots and pans, Get ingrediants, Cook." });
+            GoalList.Add(new GoalModel { GoalName = "Make Dinner", Image = "\uf005", Tasks = "Go to kichen, Get pots and pans, Get ingrediants, Cook." });
+            GoalList.Add(new GoalModel { GoalName = "Make Dinner", Image = "\uf005", Tasks = "Go to kichen, Get pots and pans, Get ingrediants, Cook." });
+            GoalList.Add(new GoalModel { GoalName = "Make Dinner", Image = "\uf005", Tasks = "Go to kichen, Get pots and pans, Get ingrediants, Cook." });
         }
 
+        //public void AddGoal(GoalModel GoalName)
+        //{
+        //    GoalList.AddRange(GoalName);
+        //}
         //Goal selectedGoal;
         //public Goal SelectedGoal
         //{
@@ -28,7 +42,7 @@ namespace ReablementApp.ViewModels
         //    {
         //        if (value != null)
         //        {
-        //            Application.Current.MainPage.DisplayAlert("Goal Details", value.Name, "OK");
+        //            Application.Current.MainPage.DisplayAlert("Goal Details", value.GoalName, "OK");
         //            previouslySelected = value;
         //            value = null;
         //        }

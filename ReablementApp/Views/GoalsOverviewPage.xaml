@@ -48,23 +48,26 @@
             
             <Button
                 Grid.Row="1"
-                x:Name="btnAddGoal"
+                x:Name="lvAddGoal"
                 BackgroundColor="{StaticResource Primary}"
                 BorderColor="Black"
-                BorderWidth="0.3"
-                Clicked="btnAddGoal_Clicked"
-                HorizontalOptions="End"               
+                CornerRadius="10"
+                HorizontalOptions="End"
                 VerticalOptions="CenterAndExpand"
-                Text="Add Goal"
+                Text="Add Goal"                
                 TextColor="{StaticResource TextPrimary}"/>
-            <Label 
+                <!--Clicked="btnAddGoal_Clicked"-->
+                <!--Command="{Binding AddGoal}"-->
+            <Entry 
                 Grid.Row="1"
                 HorizontalOptions="CenterAndExpand"
-                Text="Current Goals"
+                Placeholder="Enter Goal Name"                
                 FontSize="Large"
                 TextColor="{StaticResource TextPrimary}"/>
+                <!--Text="{Binding GoalName}"-->
 
             <ListView
+                x:Name="lvGoals"
                 Grid.Row="2"
                 CachingStrategy="RecycleElement"
                 BackgroundColor="Transparent"            
@@ -73,8 +76,9 @@
                 IsPullToRefreshEnabled="True"
                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                 RefreshCommand="{Binding RefreshCommand}"
-                SeparatorVisibility="None">
-                <!--ItemsSource="{Binding }"-->
+                SeparatorVisibility="None"                
+                ItemSelected="ListView_ItemSelected">
+                <!--ItemsSource="{Binding GoalList}"-->
                 <!--SelectedItem="{Binding SelectedGoal, Mode=TwoWay}"-->
 
                 <ListView.ItemsSource>
@@ -84,21 +88,38 @@
                 </ListView.ItemsSource>
 
                 <ListView.ItemTemplate>
-                    <!--x:DataType="model:Goal"-->
-                    <DataTemplate>
+                    <DataTemplate x:DataType="model:GoalModel">
                         <ViewCell>
                             <ViewCell.ContextActions>
                                 <MenuItem Text="Delete" IsDestructive="True"/>
                             </ViewCell.ContextActions>
                             <Grid Padding="10">
                                 <Frame CornerRadius="10" HasShadow="True">
-                                    <StackLayout Orientation="Horizontal">
-                                        <StackLayout VerticalOptions="Center">
-                                            <Label VerticalOptions="Center" FontSize="Large" Text="Current Goal"/>
-                                            <ProgressBar 
-                                                Progress="0.5"
-                                                ProgressColor="Green"/>
-                                        </StackLayout>
+                                    <StackLayout HorizontalOptions="StartAndExpand">
+                                        <Grid RowDefinitions="Auto,*" ColumnDefinitions="Auto,*,10">
+                                        <Image>
+                                            <Image.Source>
+                                                <FontImageSource
+                                                    Grid.Row="0"
+                                                    Grid.Column="0"
+                                                    FontFamily="FASolid" 
+                                                    Glyph="{x:Static helpers:FAIcons.Star}"
+                                                    Size="20"
+                                                    Color="{StaticResource Primary}"/>
+                                            </Image.Source>
+                                        </Image>
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            VerticalOptions="Center"
+                                            FontSize="Large"
+                                            Text="Test Goal"/>
+                                        <ProgressBar
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            Progress="0.5"
+                                            ProgressColor="Green"/>
+                                        </Grid>
                                     </StackLayout>
                                 </Frame>
                             </Grid>
