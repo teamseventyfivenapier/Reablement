@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ReablementApp.Models
 {
-    public class Client
+    public class Goals
     {
 
     }

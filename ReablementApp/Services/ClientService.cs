@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ReablementApp.Models
+namespace ReablementApp.Services
 {
-    public class Client
+    public class ClientService : SqlNetService
     {
 
     }
