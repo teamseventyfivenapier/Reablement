@@ -18,7 +18,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="150"/>
-                <RowDefinition Height="40"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
@@ -52,6 +52,7 @@
                 BackgroundColor="{StaticResource Primary}"
                 BorderColor="Black"
                 CornerRadius="10"
+                Margin="0,0,10,0"
                 HorizontalOptions="End"
                 VerticalOptions="CenterAndExpand"
                 Text="Add Goal"                
@@ -60,7 +61,9 @@
                 <!--Command="{Binding AddGoal}"-->
             <Entry 
                 Grid.Row="1"
-                HorizontalOptions="CenterAndExpand"
+                WidthRequest="300"
+                Margin="10,0,0,0"
+                HorizontalOptions="StartAndExpand"
                 Placeholder="Enter Goal Name"                
                 FontSize="Large"
                 TextColor="{StaticResource TextPrimary}"/>
@@ -80,13 +83,11 @@
                 ItemSelected="ListView_ItemSelected">
                 <!--ItemsSource="{Binding GoalList}"-->
                 <!--SelectedItem="{Binding SelectedGoal, Mode=TwoWay}"-->
-
                 <ListView.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>test</x:String>
                     </x:Array>
                 </ListView.ItemsSource>
-
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="model:GoalModel">
                         <ViewCell>

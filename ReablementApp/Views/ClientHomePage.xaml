@@ -45,13 +45,13 @@
                 </StackLayout>
             </Frame>
 
-            <StackLayout Grid.Row="1" VerticalOptions="CenterAndExpand" BackgroundColor="{StaticResource Background}">
+            <StackLayout Grid.Row="1" Margin="10,-10,10,0" Spacing="0" VerticalOptions="CenterAndExpand" BackgroundColor="{StaticResource Background}">
                 <Label
                     Text="Day 1"
                     TextColor="{StaticResource TextPrimary}"
                     FontSize="Large"
                     HorizontalOptions="CenterAndExpand"/>
-                <ProgressBar 
+                <ProgressBar
                     Progress="0.5" 
                     ProgressColor="Green"/>
                 <Label
@@ -76,7 +76,7 @@
                                 Padding="0" 
                                 BackgroundColor="{StaticResource Background}"
                                 IsClippedToBounds="True">
-                                <Grid RowDefinitions="350,Auto">
+                                <Grid RowDefinitions="340,Auto">
                                     <Image 
                                         Grid.Row="0" 
                                         Source="{Binding Image}"

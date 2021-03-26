@@ -12,11 +12,16 @@ namespace ReablementApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CurrentGoalPage : ContentPage
     {
-        public CurrentGoalPage(string GoalName, string Task)
+        public CurrentGoalPage()
         {
             InitializeComponent();
-            currentGoal.Text = GoalName;
-            currentTask.Text = Task;
+            //currentGoal.Text = GoalName;
+            //currentTask.Text = Task;
+        }
+
+        private void btnBack_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new GoalsOverviewPage());
         }
     }
 }

@@ -2,7 +2,10 @@
 <ContentPage
     x:Class="ReablementApp.Views.CurrentGoalPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:helpers="clr-namespace:ReablementApp.Helpers"
+    xmlns:viewmodels="clr-namespace:ReablementApp.ViewModels"
+    xmlns:model="clr-namespace:ReablementApp.Models">
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -33,12 +36,13 @@
                 </StackLayout>
             </Frame>
 
-            <StackLayout HorizontalOptions="CenterAndExpand" Grid.Row="1">
-                <Label Text="Goal" FontSize="Large" TextColor="{StaticResource Primary}"/>
-                <Entry x:Name="currentGoal"/>
-                <Label Text="Tasks" FontSize="Large" TextColor="{StaticResource Primary}"/>
-                <Entry x:Name="currentTask"/>
-                <Button x:Name="btnUpdateGoal" Text="Update" TextColor="{StaticResource TextPrimary}" BackgroundColor="{StaticResource Primary}"/>
+            <StackLayout Grid.Row="1" Margin="10,0,10,0">
+                <Label Text="Goal" FontSize="Large" TextColor="{StaticResource TextPrimary}"/>
+                <Entry x:Name="currentGoal" Placeholder="Current Goal"/>
+                <Label Text="Tasks" FontSize="Large" TextColor="{StaticResource TextPrimary}"/>
+                <Editor x:Name="currentTask" Placeholder="Current Tasks"/>
+                <Button x:Name="btnUpdateGoal" Text="Update" TextColor="{StaticResource TextPrimary}" CornerRadius="10" BackgroundColor="{StaticResource Primary}"/>
+                <Button x:Name="btnBack" Clicked="btnBack_Clicked" Text="Back" TextColor="{StaticResource TextPrimary}" CornerRadius="10" BackgroundColor="{StaticResource Primary}"/>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

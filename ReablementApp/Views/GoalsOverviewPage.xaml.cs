@@ -28,7 +28,8 @@ namespace ReablementApp.Views
         private async void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var goalDetails = e.SelectedItem as GoalModel;
-            await Navigation.PushAsync(new CurrentGoalPage(goalDetails.GoalName, goalDetails.Tasks));
+            await Navigation.PushAsync(new CurrentGoalPage());
+            //await Navigation.PushAsync(new CurrentGoalPage(goalDetails.GoalName, goalDetails.Tasks));
             //var goal = ((ListView)sender).SelectedItem as Models.GoalModel;
             //if (goal == null)
             //    return;
