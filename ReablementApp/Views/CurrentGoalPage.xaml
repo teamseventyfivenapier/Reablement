@@ -6,6 +6,10 @@
     xmlns:helpers="clr-namespace:ReablementApp.Helpers"
     xmlns:viewmodels="clr-namespace:ReablementApp.ViewModels"
     xmlns:model="clr-namespace:ReablementApp.Models">
+    
+    <ContentPage.BindingContext>
+        <viewmodels:GoalsOverviewViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -15,27 +19,26 @@
             <Frame BackgroundColor="{StaticResource Primary}">
                 <StackLayout>
                     <Label
-                            Text="Current Goal"
-                            TextColor="{StaticResource TextPrimary}"
-                            FontSize="Large"
-                            HorizontalOptions="CenterAndExpand"/>
+                        Text="Current Goal"
+                        TextColor="{StaticResource TextPrimary}"
+                        FontSize="Large"
+                        HorizontalOptions="CenterAndExpand"/>
                     <Image>
                         <Image.Source>
                             <FontImageSource
-                                    FontFamily="FASolid" 
-                                    Glyph="{x:Static helpers:FAIcons.User}"
-                                    Size="50"
-                                    Color="LightYellow"/>
+                                FontFamily="FASolid" 
+                                Glyph="{x:Static helpers:FAIcons.User}"
+                                Size="50"
+                                Color="LightYellow"/>
                         </Image.Source>
                     </Image>
                     <Label
-                            Text="User"
-                            TextColor="{StaticResource TextPrimary}"
-                            FontSize="Large"
-                            HorizontalOptions="CenterAndExpand"/>
+                        Text="User"
+                        TextColor="{StaticResource TextPrimary}"
+                        FontSize="Large"
+                        HorizontalOptions="CenterAndExpand"/>
                 </StackLayout>
             </Frame>
-
             <StackLayout Grid.Row="1" Margin="10,0,10,0">
                 <Label Text="Goal" FontSize="Large" TextColor="{StaticResource TextPrimary}"/>
                 <Entry x:Name="currentGoal" Placeholder="Current Goal"/>

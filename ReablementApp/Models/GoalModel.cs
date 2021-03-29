@@ -7,6 +7,6 @@ namespace ReablementApp.Models
     public class GoalModel
     {
         public string GoalName { get; set; }
-        public string Tasks { get; set; }
+        public string GoalTasks { get; set; }
     }
 }

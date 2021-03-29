@@ -7,13 +7,11 @@
     xmlns:viewmodels="clr-namespace:ReablementApp.ViewModels"
     xmlns:model="clr-namespace:ReablementApp.Models"
     x:DataType="viewmodels:GoalsOverviewViewModel"
-    BackgroundColor="{StaticResource Background}"
-    x:Name="GoalsPage">
+    BackgroundColor="{StaticResource Background}">
 
     <ContentPage.BindingContext>
         <viewmodels:GoalsOverviewViewModel/>
     </ContentPage.BindingContext>
-
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -21,7 +19,6 @@
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-
             <Frame BackgroundColor="{StaticResource Primary}">
                 <StackLayout>
                     <Label
@@ -45,7 +42,7 @@
                         HorizontalOptions="CenterAndExpand"/>
                 </StackLayout>
             </Frame>
-            
+
             <Button
                 Grid.Row="1"
                 x:Name="lvAddGoal"
@@ -57,8 +54,6 @@
                 VerticalOptions="CenterAndExpand"
                 Text="Add Goal"                
                 TextColor="{StaticResource TextPrimary}"/>
-                <!--Clicked="btnAddGoal_Clicked"-->
-                <!--Command="{Binding AddGoal}"-->
             <Entry 
                 Grid.Row="1"
                 WidthRequest="300"
@@ -67,67 +62,47 @@
                 Placeholder="Enter Goal Name"                
                 FontSize="Large"
                 TextColor="{StaticResource TextPrimary}"/>
-                <!--Text="{Binding GoalName}"-->
 
-            <ListView
+            <CollectionView
                 x:Name="lvGoals"
+                ItemsSource="{Binding GoalList}"
+                SelectionChanged="lvGoals_SelectionChanged"
+                SelectionMode="Single"
                 Grid.Row="2"
-                CachingStrategy="RecycleElement"
-                BackgroundColor="Transparent"            
-                IsGroupingEnabled="True" 
-                HasUnevenRows="True" 
-                IsPullToRefreshEnabled="True"
-                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                RefreshCommand="{Binding RefreshCommand}"
-                SeparatorVisibility="None"                
-                ItemSelected="ListView_ItemSelected">
-                <!--ItemsSource="{Binding GoalList}"-->
-                <!--SelectedItem="{Binding SelectedGoal, Mode=TwoWay}"-->
-                <ListView.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>test</x:String>
-                    </x:Array>
-                </ListView.ItemsSource>
-                <ListView.ItemTemplate>
+                BackgroundColor="Transparent">
+                <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:GoalModel">
-                        <ViewCell>
-                            <ViewCell.ContextActions>
-                                <MenuItem Text="Delete" IsDestructive="True"/>
-                            </ViewCell.ContextActions>
-                            <Grid Padding="10">
-                                <Frame CornerRadius="10" HasShadow="True">
-                                    <StackLayout HorizontalOptions="StartAndExpand">
-                                        <Grid RowDefinitions="Auto,*" ColumnDefinitions="Auto,*,10">
-                                        <Image>
-                                            <Image.Source>
-                                                <FontImageSource
-                                                    Grid.Row="0"
-                                                    Grid.Column="0"
-                                                    FontFamily="FASolid" 
-                                                    Glyph="{x:Static helpers:FAIcons.Star}"
-                                                    Size="20"
-                                                    Color="{StaticResource Primary}"/>
-                                            </Image.Source>
-                                        </Image>
-                                        <Label
-                                            Grid.Row="0"
-                                            Grid.Column="1"
-                                            VerticalOptions="Center"
-                                            FontSize="Large"
-                                            Text="Test Goal"/>
-                                        <ProgressBar
-                                            Grid.Row="1"
-                                            Grid.Column="1"
-                                            Progress="0.5"
-                                            ProgressColor="Green"/>
-                                        </Grid>
-                                    </StackLayout>
-                                </Frame>
-                            </Grid>
-                        </ViewCell>
+                        <Grid Padding="10" RowDefinitions="Auto,*" ColumnDefinitions="Auto,*">
+                            <Frame CornerRadius="10" HasShadow="True" HorizontalOptions="StartAndExpand" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                                <StackLayout>
+                                    <Image>
+                                        <Image.Source>
+                                            <FontImageSource
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                FontFamily="FASolid" 
+                                                Glyph="{x:Static helpers:FAIcons.Star}"
+                                                Size="20"
+                                                Color="{StaticResource Primary}"/>
+                                        </Image.Source>
+                                    </Image>
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        VerticalOptions="Center"
+                                        FontSize="Large"
+                                        Text="{Binding GoalName}"/>
+                                    <ProgressBar
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Progress="0.5"
+                                        ProgressColor="Green"/>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
