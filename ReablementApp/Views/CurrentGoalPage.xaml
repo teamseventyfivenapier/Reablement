@@ -2,13 +2,55 @@
 <ContentPage
     x:Class="ReablementApp.Views.CurrentGoalPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:helpers="clr-namespace:ReablementApp.Helpers"
+    xmlns:viewmodels="clr-namespace:ReablementApp.ViewModels"
+    xmlns:model="clr-namespace:ReablementApp.Models">
+
+    <ContentPage.BindingContext>
+        <viewmodels:CurrentGoalViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-            <Label
-                HorizontalOptions="CenterAndExpand"
-                Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Frame BackgroundColor="{StaticResource Primary}">
+                <StackLayout>
+                    <Label
+                        Text="Current Goal"
+                        TextColor="{StaticResource TextPrimary}"
+                        FontSize="Large"
+                        HorizontalOptions="CenterAndExpand"/>
+                    <Image>
+                        <Image.Source>
+                            <FontImageSource
+                                FontFamily="FASolid" 
+                                Glyph="{x:Static helpers:FAIcons.User}"
+                                Size="50"
+                                Color="LightYellow"/>
+                        </Image.Source>
+                    </Image>
+                    <Label
+                        Text="User"
+                        TextColor="{StaticResource TextPrimary}"
+                        FontSize="Large"
+                        HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+            </Frame>
+            <StackLayout Grid.Row="1" Margin="10,0,10,0">
+                <Label Text="Goal" FontSize="Large" TextColor="{StaticResource TextPrimary}"/>
+                <Frame Padding="0" Margin="0">
+                    <Editor x:Name="currentGoal" Text="{Binding Goal.GoalName}"/>
+                </Frame>
+                <Label Text="Tasks" FontSize="Large" TextColor="{StaticResource TextPrimary}"/>
+                <Frame Padding="0" Margin="0">
+                    <Editor x:Name="currentTask" Text="{Binding Goal.GoalTasks}" AutoSize="TextChanges" HeightRequest="300"/>
+                </Frame>
+                <Button x:Name="btnUpdateGoal" Text="Update" TextColor="{StaticResource TextPrimary}" CornerRadius="10" BackgroundColor="{StaticResource Primary}"/>
+                <Button x:Name="btnBack" Clicked="btnBack_Clicked" Text="Back" TextColor="{StaticResource TextPrimary}" CornerRadius="10" BackgroundColor="{StaticResource Primary}"/>
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

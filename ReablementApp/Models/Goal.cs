@@ -4,8 +4,9 @@ using System.Text;
 
 namespace ReablementApp.Models
 {
-    public class Goals
+    public class Goal
     {
-
+        public string GoalName { get; set; }
+        public string GoalTasks { get; set; }
     }
 }

@@ -4,8 +4,8 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:helpers="clr-namespace:ReablementApp.Helpers"
-    xmlns:model="clr-namespace:ReablementApp.Models"
     xmlns:viewmodels="clr-namespace:ReablementApp.ViewModels"
+    xmlns:model="clr-namespace:ReablementApp.Models"
     x:DataType="viewmodels:ClientHomeViewModel"
     BackgroundColor="{StaticResource Background}">
 
@@ -16,78 +16,77 @@
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="150" />
-                <RowDefinition Height="100" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <Frame BackgroundColor="{StaticResource Primary}">
                 <StackLayout>
                     <Label
-                        FontSize="Large"
-                        HorizontalOptions="CenterAndExpand"
                         Text="Welcome"
-                        TextColor="{StaticResource TextPrimary}" />
+                        TextColor="{StaticResource TextPrimary}"
+                        FontSize="Large"
+                        HorizontalOptions="CenterAndExpand"/>
                     <Image>
                         <Image.Source>
                             <FontImageSource
-                                FontFamily="FASolid"
+                                FontFamily="FASolid" 
                                 Glyph="{x:Static helpers:FAIcons.User}"
                                 Size="50"
-                                Color="LightYellow" />
+                                Color="LightYellow"/>
                         </Image.Source>
                     </Image>
                     <Label
-                        FontSize="Large"
-                        HorizontalOptions="CenterAndExpand"
                         Text="User"
-                        TextColor="{StaticResource TextPrimary}" />
+                        TextColor="{StaticResource TextPrimary}"
+                        FontSize="Large"
+                        HorizontalOptions="CenterAndExpand"/>
                 </StackLayout>
             </Frame>
 
-            <StackLayout
-                Grid.Row="1"
-                BackgroundColor="{StaticResource Background}"
-                VerticalOptions="CenterAndExpand">
+            <StackLayout Grid.Row="1" Margin="10,-10,10,0" Spacing="0" VerticalOptions="CenterAndExpand" BackgroundColor="{StaticResource Background}">
                 <Label
-                    FontSize="Large"
-                    HorizontalOptions="CenterAndExpand"
                     Text="Day 1"
-                    TextColor="{StaticResource TextPrimary}" />
-                <ProgressBar Progress="0.5" ProgressColor="Green" />
+                    TextColor="{StaticResource TextPrimary}"
+                    FontSize="Large"
+                    HorizontalOptions="CenterAndExpand"/>
+                <ProgressBar
+                    Progress="0.5" 
+                    ProgressColor="Green"/>
                 <Label
-                    FontSize="Medium"
-                    HorizontalOptions="CenterAndExpand"
                     Text="Rehabilitation Progress"
-                    TextColor="{StaticResource TextSecondary}" />
+                    TextColor="{StaticResource TextSecondary}"
+                    FontSize="Medium"
+                    HorizontalOptions="CenterAndExpand"/>
             </StackLayout>
 
-            <CollectionView
-                Grid.Row="2"
-                HorizontalOptions="Center"
+            <CollectionView 
+                Grid.Row="2" 
                 ItemsLayout="HorizontalList"
                 ItemsSource="{Binding Picture}"
-                VerticalOptions="Center">
+                VerticalOptions="Center"
+                HorizontalOptions="Center">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Picture">
                         <Grid Padding="10,0,0,30">
-                            <Frame
-                                Padding="0"
+                            <Frame 
+                                WidthRequest="380" 
+                                HasShadow="False" 
+                                Padding="0" 
                                 BackgroundColor="{StaticResource Background}"
-                                HasShadow="False"
-                                IsClippedToBounds="True"
-                                WidthRequest="380">
-                                <Grid RowDefinitions="350,Auto">
-                                    <Image
-                                        Grid.Row="0"
-                                        Margin="0,0,0,0"
-                                        Source="{Binding Image}" />
-                                    <Label
+                                IsClippedToBounds="True">
+                                <Grid RowDefinitions="340,Auto">
+                                    <Image 
+                                        Grid.Row="0" 
+                                        Source="{Binding Image}"
+                                        Margin="0,0,0,0"/>
+                                    <Label 
                                         Grid.Row="1"
-                                        Margin="0,0,0,0"
+                                        Text="{Binding Quote}"
                                         FontSize="Large"
-                                        HorizontalTextAlignment="Center"
-                                        Text="{Binding Quote}" />
+                                        Margin="0,0,0,0"                                      
+                                        HorizontalTextAlignment="Center"/>
                                 </Grid>
                             </Frame>
                         </Grid>

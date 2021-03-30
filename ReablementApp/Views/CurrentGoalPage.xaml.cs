@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ReablementApp.Models;
+using ReablementApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +17,18 @@ namespace ReablementApp.Views
         public CurrentGoalPage()
         {
             InitializeComponent();
+            //currentGoal.Text = GoalName;
+            //currentTask.Text = Task;
+        }
+        public CurrentGoalPage(Goal goal)
+        {
+            InitializeComponent();
+            BindingContext = new CurrentGoalViewModel(goal);
+        }
+
+        private void btnBack_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new GoalsOverviewPage());
         }
     }
 }
