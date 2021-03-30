@@ -41,9 +41,13 @@
             </Frame>
             <StackLayout Grid.Row="1" Margin="10,0,10,0">
                 <Label Text="Goal" FontSize="Large" TextColor="{StaticResource TextPrimary}"/>
-                <Editor x:Name="currentGoal" Text="{Binding Goal.GoalName}"/>
+                <Frame Padding="0" Margin="0">
+                    <Editor x:Name="currentGoal" Text="{Binding Goal.GoalName}"/>
+                </Frame>
                 <Label Text="Tasks" FontSize="Large" TextColor="{StaticResource TextPrimary}"/>
-                <Editor x:Name="currentTask" Text="{Binding Goal.GoalTasks}" HeightRequest="300"/>
+                <Frame Padding="0" Margin="0">
+                    <Editor x:Name="currentTask" Text="{Binding Goal.GoalTasks}" AutoSize="TextChanges" HeightRequest="300"/>
+                </Frame>
                 <Button x:Name="btnUpdateGoal" Text="Update" TextColor="{StaticResource TextPrimary}" CornerRadius="10" BackgroundColor="{StaticResource Primary}"/>
                 <Button x:Name="btnBack" Clicked="btnBack_Clicked" Text="Back" TextColor="{StaticResource TextPrimary}" CornerRadius="10" BackgroundColor="{StaticResource Primary}"/>
             </StackLayout>
