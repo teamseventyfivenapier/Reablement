@@ -1,12 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ReablementApp.Views.MorePage">
+<ContentPage
+    x:Class="ReablementApp.Views.MorePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:helpers="clr-namespace:ReablementApp.Helpers"
+    xmlns:viewmodels="clr-namespace:ReablementApp.ViewModels"
+    x:DataType="viewmodels:MoreViewModel">
+    <ContentPage.BindingContext>
+        <viewmodels:MoreViewModel />
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Button
+                x:Name="BtnLogout"
+                Margin="20,20,20,0"
+                BackgroundColor="#9EB2CC"
+                BorderColor="Black"
+                BorderWidth="1"
+                Command="{Binding LogoutCommand}"
+                HeightRequest="50"
+                HorizontalOptions="FillAndExpand"
+                Text="Logout"
+                TextColor="Black" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

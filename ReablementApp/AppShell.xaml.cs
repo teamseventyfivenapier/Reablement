@@ -1,9 +1,4 @@
-﻿
-using ReablementApp.Models;
-using ReablementApp.Views;
-using System;
-using System.Collections.Generic;
-using Xamarin.Forms;
+﻿using ReablementApp.Models;
 
 namespace ReablementApp
 {
@@ -11,14 +6,11 @@ namespace ReablementApp
     {
         public AppShell()
         {
-
-
-
-
             InitializeComponent();
 
 
-
+            //Depending on the type of user that is logged into the application, the tabs, pages and navigation between
+            //Pages will change. 
             if (User.CurrentUser == "Client")
             {
                 ClientTabs.IsVisible = true;
@@ -51,9 +43,6 @@ namespace ReablementApp
                 OTTabs.IsVisible = false;
                 ManagerTabs.IsVisible = false;
             }
-            //Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
-            //Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
         }
-
     }
 }
