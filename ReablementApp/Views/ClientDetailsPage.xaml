@@ -3,17 +3,192 @@
     x:Class="ReablementApp.Views.ClientDetailsPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    BackgroundColor="#FFFFE5">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label
-                HorizontalOptions="CenterAndExpand"
-                Text="Text test"
-                TextColor="Black"
-                FontSize="Large"
-                VerticalOptions="CenterAndExpand" />
+    xmlns:helpers="clr-namespace:ReablementApp.Helpers"
+    xmlns:model="clr-namespace:ReablementApp.Models"
+    xmlns:mvvm="clr-namespace:MvvmHelpers;assembly=MvvmHelpers"
+    xmlns:viewmodels="clr-namespace:ReablementApp.ViewModels"
+    x:DataType="viewmodels:ClientDetailsViewModel"
+    BackgroundColor="{StaticResource Background}">
+    <ContentPage.BindingContext>
+        <viewmodels:ClientDetailsViewModel />
+    </ContentPage.BindingContext>
 
-            <Button Text="button" BackgroundColor="Blue" TextColor="Yellow" FontSize="Large" />
-        </StackLayout>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="UserIcon" TargetType="Label">
+                <Setter Property="FontFamily" Value="FASolid" />
+                <Setter Property="FontSize" Value="28" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+            </Style>
+            <Style x:Key="CategoryLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="30">
+                <Label
+                    FontSize="30"
+                    HorizontalOptions="Center"
+                    Text="Client Details"
+                    TextColor="Black" />
+                <Label
+                    Margin="0,0,0,5"
+                    Style="{StaticResource UserIcon}"
+                    Text="{x:Static helpers:FAIcons.User}" />
+                <Label
+                    x:Name="LblClientName"
+                    FontSize="Large"
+                    HorizontalOptions="Center"
+                    Text="{Binding ClientFullName}"
+                    TextColor="Black" />
+                <Label
+                    Margin="5,20,0,-10"
+                    FontSize="Medium"
+                    Text="First Names" />
+                <Entry
+                    x:Name="EntClientFirstName"
+                    x:DataType="viewmodels:ClientDetailsViewModel"
+                    Placeholder="Enter Name"
+                    Text="{Binding ClientFirstName}" />
+                <Label
+                    Margin="5,0,0,-10"
+                    FontSize="Medium"
+                    Text="Surname" />
+                <Entry
+                    x:Name="EntClientLastName"
+                    x:DataType="viewmodels:ClientDetailsViewModel"
+                    Placeholder="Enter Name"
+                    Text="{Binding ClientSurname}" />
+                <Label
+                    Margin="5,0,0,-10"
+                    FontSize="Medium"
+                    Text="Date of Bith" />
+                <DatePicker x:Name="DateClientDOB" Date="{Binding ClientDOB}" />
+                <Label
+                    Margin="5,0,0,-10"
+                    FontSize="Medium"
+                    Text="Age" />
+                <Entry
+                    x:Name="EntClientAge"
+                    x:DataType="viewmodels:ClientDetailsViewModel"
+                    Placeholder="Age"
+                    Text="{Binding ClientAge}" />
+                <Label
+                    Margin="5,0,0,-10"
+                    FontSize="Medium"
+                    Text="Address" />
+                <Entry
+                    x:Name="EntClientAddress"
+                    x:DataType="viewmodels:ClientDetailsViewModel"
+                    Placeholder="Address"
+                    Text="{Binding ClientAddress}" />
+                <Label
+                    Margin="5,0,0,-10"
+                    FontSize="Medium"
+                    Text="Medical Conditons" />
+                <Entry
+                    x:Name="EntClientMedicalConditions"
+                    x:DataType="viewmodels:ClientDetailsViewModel"
+                    Placeholder="Medical Conditions"
+                    Text="{Binding ClientMedicalConditions}" />
+                <Label
+                    Margin="5,0,0,-10"
+                    FontSize="Medium"
+                    Text="Accident History" />
+                <Entry
+                    x:Name="EntClientMedicalAccidentHistory"
+                    x:DataType="viewmodels:ClientDetailsViewModel"
+                    Placeholder="Accident History"
+                    Text="{Binding ClientAccidentHist}" />
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="0,16,0,0"
+                        FontSize="Small"
+                        Text="Time on Reablement" />
+                    <Entry
+                        x:Name="EntTimeOnRE"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        x:DataType="viewmodels:ClientDetailsViewModel"
+                        Text="{Binding TimeOnRE}" />
+
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="0,16,0,0"
+                        FontSize="Small"
+                        Text="Joined Reablement" />
+                    <DatePicker
+                        x:Name="DateJoinedRE"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        x:DataType="viewmodels:ClientDetailsViewModel"
+                        Date="{Binding DateJoinedRE}" />
+                    <Label
+                        x:Name="lblAppointedOT"
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Margin="0,16,0,0"
+                        FontSize="Small"
+                        Text="Appointed OT" />
+                    <DatePicker
+                        x:Name="DateApointedOT"
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        x:DataType="viewmodels:ClientDetailsViewModel"
+                        Date="{Binding DateApointedOT}" />
+                    <Label
+                        x:Name="lblAppointedCarer"
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Margin="0,16,0,0"
+                        FontSize="Small"
+                        Text="Appointed Carer" />
+                    <DatePicker
+                        x:Name="DateAppointedCarer"
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        x:DataType="viewmodels:ClientDetailsViewModel"
+                        Date="{Binding DateAppointedCarer}" />
+                </Grid>
+
+                <Button
+                    Margin="0,20,0,0"
+                    BackgroundColor="{StaticResource ButtonBlue}"
+                    BorderColor="Black"
+                    BorderWidth="1"
+                    Command="{Binding SetClientDetailsCommand}"
+                    FontSize="Medium"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Update"
+                    TextColor="Black" />
+                <Button
+                    Margin="0,20,0,0"
+                    BackgroundColor="{StaticResource ButtonGreen}"
+                    BorderColor="Black"
+                    BorderWidth="1"
+                    Command="{Binding BackToClientsPageCommand}"
+                    FontSize="Medium"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Back"
+                    TextColor="Black" />
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

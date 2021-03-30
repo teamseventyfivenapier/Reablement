@@ -1,11 +1,92 @@
-﻿using System;
+﻿using ReablementApp.Models;
+using SQLite;
+using System;
 using System.Collections.Generic;
-using System.Text;
+using System.IO;
+using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace ReablementApp.Services
 {
     public class ClientService : SqlNetService
     {
+
+        //TODO Delete?
+        // Adds client to the cliet table
+        public static async Task AddClient(string firstname, string lastname, DateTime dob, int age, string address,
+            string medicalConditions, string accidentHistory, double timeOnRE, DateTime JoinedRE, DateTime appointedOT,
+            DateTime appointedCarer)
+        {
+            //everytime someone call into the client service we make sure that the database is created
+            await Init();
+            var client = new Client
+            {
+                FirstName = firstname,
+                LastName = lastname,
+                DOB = dob,
+                Age = age,
+                Address = address,
+                MedicalConditions = medicalConditions,
+                AccidentHistory = accidentHistory,
+                TimeOnRE = timeOnRE,
+                JoinedRE = JoinedRE,
+                AppointedCarer = appointedCarer,
+                AppointedOT = appointedOT
+            };
+
+            var id = await db.InsertAsync(client);
+        }
+
+        //Removes client from the clients table
+        public static async Task RemoveClient(int id)
+        {
+            await Init();
+
+            await db.DeleteAsync<Client>(id);
+        }
+
+        //Gets a list of clients fron the clients table in the database
+        public static async Task<IEnumerable<Client>> GetClients()
+        {
+            await Init();
+
+            var clients = await db.Table<Client>().ToListAsync();
+            return clients;
+        }
+
+        // Method gets a client from the clients table in the database via their ID
+        public static Task<Client> GetClientAsync(int id)
+        {
+            // Get a specific client.
+            return db.Table<Client>()
+                            .Where(i => i.Id == id)
+                            .FirstOrDefaultAsync();
+        }
+
+        // Method to get a client from the clients table in the databasse by their age
+        public static Task<Client> GetClientAgeAsync(int age)
+        {
+            // Get a specific client by age.
+            return db.Table<Client>()
+                            .Where(i => i.Age == age)
+                            .FirstOrDefaultAsync();
+        }
+
+
+        //Method to add or update an existing client to the clients table in the database. 
+        public static Task<int> SaveClientAsync(Client client)
+        {
+            if (client.Id != 0)
+            {
+                // Update an existing client.
+                return db.UpdateAsync(client);
+            }
+            else
+            {
+                // Save a new client.
+                return db.InsertAsync(client);
+            }
+        }
 
     }
 }

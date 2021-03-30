@@ -2,13 +2,120 @@
 <ContentPage
     x:Class="ReablementApp.Views.ClientsPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:helpers="clr-namespace:ReablementApp.Helpers"
+    xmlns:model="clr-namespace:ReablementApp.Models"
+    xmlns:mvvm="clr-namespace:MvvmHelpers;assembly=MvvmHelpers"
+    xmlns:viewmodels="clr-namespace:ReablementApp.ViewModels"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Name="ClientPage"
+    x:DataType="viewmodels:ClientsViewModel"
+    BackgroundColor="{StaticResource Background}">
+    <ContentPage.BindingContext>
+        <viewmodels:ClientsViewModel />
+    </ContentPage.BindingContext>
+
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:ItemSelectedEventArgsConverter x:Key="ItemSelectedEventArgsConverter" />
+            <Style x:Key="UserIcon" TargetType="Label">
+                <Setter Property="FontFamily" Value="FASolid" />
+                <Setter Property="FontSize" Value="28" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+            </Style>
+            <Style x:Key="CategoryLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
     <ContentPage.Content>
         <StackLayout>
+
+
+            <Button
+                Margin="10,30,10,20"
+                BackgroundColor="#A2BCC5"
+                BorderColor="Black"
+                BorderWidth="1"
+                Command="{Binding AddClientCommand}"
+                FontSize="Large"
+                HeightRequest="60"
+                HorizontalOptions="FillAndExpand"
+                Text="Add New Client"
+                TextColor="Black"
+                WidthRequest="80" />
+
             <Label
+                FontAttributes="Bold"
+                FontSize="40"
                 HorizontalOptions="CenterAndExpand"
-                Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" />
+                Text="Clients" />
+
+            <ListView
+                BackgroundColor="Transparent"
+                CachingStrategy="RecycleElement"
+                GroupDisplayBinding="{Binding Key}"
+                HasUnevenRows="True"
+                IsPullToRefreshEnabled="True"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                ItemsSource="{Binding Client}"
+                RefreshCommand="{Binding RefreshCommand}"
+                RefreshControlColor="Red"
+                SelectedItem="{Binding SelectedClient, Mode=TwoWay}"
+                SelectionMode="None"
+                SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Client">
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem
+                                    Command="{Binding Source={x:Reference ClientPage}, Path=BindingContext.RemoveCommand}"
+                                    CommandParameter="{Binding .}"
+                                    IsDestructive="True"
+                                    Text="Delete" />
+                            </ViewCell.ContextActions>
+                            <Grid Padding="10">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={x:Reference ClientPage}, Path=BindingContext.SelectedCommand}" CommandParameter="{Binding .}" />
+                                </Grid.GestureRecognizers>
+                                <Frame
+                                    BackgroundColor="#9EB2CC"
+                                    CornerRadius="20"
+                                    HasShadow="True">
+                                    <StackLayout Orientation="Horizontal">
+                                        <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                                            <Label
+                                                FontSize="Large"
+                                                Style="{StaticResource UserIcon}"
+                                                Text="{x:Static helpers:FAIcons.User}"
+                                                VerticalOptions="Center" />
+                                            <Label
+                                                FontSize="Large"
+                                                Text="{Binding FirstName}"
+                                                VerticalOptions="Center" />
+                                            <Label
+                                                FontSize="Large"
+                                                Text="{Binding LastName}"
+                                                VerticalOptions="Center" />
+                                            <Label
+                                                FontSize="Large"
+                                                Text="{Binding Id}"
+                                                VerticalOptions="Center" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
         </StackLayout>
     </ContentPage.Content>
+
+
 </ContentPage>

@@ -48,8 +48,8 @@
 
                 <Picker
                     x:Name="picker"
-                    Margin="20,20,20,0"
                     Title="Select a user type"
+                    Margin="20,20,20,0"
                     TitleColor="Red">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">

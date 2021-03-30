@@ -4,89 +4,90 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:helpers="clr-namespace:ReablementApp.Helpers"
-    xmlns:viewmodels="clr-namespace:ReablementApp.ViewModels"
     xmlns:model="clr-namespace:ReablementApp.Models"
+    xmlns:viewmodels="clr-namespace:ReablementApp.ViewModels"
     x:DataType="viewmodels:ClientHomeViewModel"
     BackgroundColor="{StaticResource Background}">
-    
+
     <ContentPage.BindingContext>
         <viewmodels:ClientHomeViewModel />
     </ContentPage.BindingContext>
-    
+
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="150"/>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="150" />
+                <RowDefinition Height="100" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
             <Frame BackgroundColor="{StaticResource Primary}">
                 <StackLayout>
                     <Label
-                        Text="Welcome"
-                        TextColor="{StaticResource TextPrimary}"
                         FontSize="Large"
-                        HorizontalOptions="CenterAndExpand"/>
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Welcome"
+                        TextColor="{StaticResource TextPrimary}" />
                     <Image>
                         <Image.Source>
                             <FontImageSource
-                                FontFamily="FASolid" 
+                                FontFamily="FASolid"
                                 Glyph="{x:Static helpers:FAIcons.User}"
                                 Size="50"
-                                Color="LightYellow"/>
+                                Color="LightYellow" />
                         </Image.Source>
                     </Image>
                     <Label
-                        Text="User"
-                        TextColor="{StaticResource TextPrimary}"
                         FontSize="Large"
-                        HorizontalOptions="CenterAndExpand"/>
+                        HorizontalOptions="CenterAndExpand"
+                        Text="User"
+                        TextColor="{StaticResource TextPrimary}" />
                 </StackLayout>
             </Frame>
 
-            <StackLayout Grid.Row="1" VerticalOptions="CenterAndExpand" BackgroundColor="{StaticResource Background}">
+            <StackLayout
+                Grid.Row="1"
+                BackgroundColor="{StaticResource Background}"
+                VerticalOptions="CenterAndExpand">
                 <Label
-                    Text="Day 1"
-                    TextColor="{StaticResource TextPrimary}"
                     FontSize="Large"
-                    HorizontalOptions="CenterAndExpand"/>
-                <ProgressBar 
-                    Progress="0.5" 
-                    ProgressColor="Green"/>
+                    HorizontalOptions="CenterAndExpand"
+                    Text="Day 1"
+                    TextColor="{StaticResource TextPrimary}" />
+                <ProgressBar Progress="0.5" ProgressColor="Green" />
                 <Label
-                    Text="Rehabilitation Progress"
-                    TextColor="{StaticResource TextSecondary}"
                     FontSize="Medium"
-                    HorizontalOptions="CenterAndExpand"/>
+                    HorizontalOptions="CenterAndExpand"
+                    Text="Rehabilitation Progress"
+                    TextColor="{StaticResource TextSecondary}" />
             </StackLayout>
 
-            <CollectionView 
-                Grid.Row="2" 
+            <CollectionView
+                Grid.Row="2"
+                HorizontalOptions="Center"
                 ItemsLayout="HorizontalList"
                 ItemsSource="{Binding Picture}"
-                VerticalOptions="Center"
-                HorizontalOptions="Center">
+                VerticalOptions="Center">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Picture">
                         <Grid Padding="10,0,0,30">
-                            <Frame 
-                                WidthRequest="380" 
-                                HasShadow="False" 
-                                Padding="0" 
+                            <Frame
+                                Padding="0"
                                 BackgroundColor="{StaticResource Background}"
-                                IsClippedToBounds="True">
+                                HasShadow="False"
+                                IsClippedToBounds="True"
+                                WidthRequest="380">
                                 <Grid RowDefinitions="350,Auto">
-                                    <Image 
-                                        Grid.Row="0" 
-                                        Source="{Binding Image}"
-                                        Margin="0,0,0,0"/>
-                                    <Label 
+                                    <Image
+                                        Grid.Row="0"
+                                        Margin="0,0,0,0"
+                                        Source="{Binding Image}" />
+                                    <Label
                                         Grid.Row="1"
-                                        Text="{Binding Quote}"
+                                        Margin="0,0,0,0"
                                         FontSize="Large"
-                                        Margin="0,0,0,0"                                      
-                                        HorizontalTextAlignment="Center"/>
+                                        HorizontalTextAlignment="Center"
+                                        Text="{Binding Quote}" />
                                 </Grid>
                             </Frame>
                         </Grid>
