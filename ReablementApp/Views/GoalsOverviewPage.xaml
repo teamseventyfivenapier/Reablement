@@ -65,16 +65,19 @@
 
             <CollectionView
                 x:Name="lvGoals"
-                ItemsSource="{Binding GoalList}"
+                ItemsSource="{Binding Goals}"
                 SelectionChanged="lvGoals_SelectionChanged"
                 SelectionMode="Single"
                 Grid.Row="2"
                 BackgroundColor="Transparent">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" HorizontalItemSpacing="0" VerticalItemSpacing="0" />
+                </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="model:GoalModel">
-                        <Grid Padding="10" RowDefinitions="Auto,*" ColumnDefinitions="Auto,*">
-                            <Frame CornerRadius="10" HasShadow="True" HorizontalOptions="StartAndExpand" Grid.ColumnSpan="2" Grid.RowSpan="2">
-                                <StackLayout>
+                    <DataTemplate x:DataType="model:Goal">
+                        <Frame CornerRadius="10" OutlineColor="LightGray" Padding="20" HasShadow="True" HorizontalOptions="StartAndExpand">
+                            <StackLayout Padding="10">
+                                <Grid RowDefinitions="Auto,*" ColumnDefinitions="Auto,*">
                                     <Image>
                                         <Image.Source>
                                             <FontImageSource
@@ -97,9 +100,9 @@
                                         Grid.Column="1"
                                         Progress="0.5"
                                         ProgressColor="Green"/>
-                                </StackLayout>
-                            </Frame>
-                        </Grid>
+                                </Grid>
+                            </StackLayout>
+                        </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

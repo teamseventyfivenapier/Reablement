@@ -8,7 +8,7 @@
     xmlns:model="clr-namespace:ReablementApp.Models">
     
     <ContentPage.BindingContext>
-        <viewmodels:GoalsOverviewViewModel/>
+        <viewmodels:CurrentGoalViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <Grid>
@@ -41,9 +41,9 @@
             </Frame>
             <StackLayout Grid.Row="1" Margin="10,0,10,0">
                 <Label Text="Goal" FontSize="Large" TextColor="{StaticResource TextPrimary}"/>
-                <Entry x:Name="currentGoal" Placeholder="Current Goal"/>
+                <Editor x:Name="currentGoal" Text="{Binding Goal.GoalName}"/>
                 <Label Text="Tasks" FontSize="Large" TextColor="{StaticResource TextPrimary}"/>
-                <Editor x:Name="currentTask" Placeholder="Current Tasks"/>
+                <Editor x:Name="currentTask" Text="{Binding Goal.GoalTasks}" HeightRequest="300"/>
                 <Button x:Name="btnUpdateGoal" Text="Update" TextColor="{StaticResource TextPrimary}" CornerRadius="10" BackgroundColor="{StaticResource Primary}"/>
                 <Button x:Name="btnBack" Clicked="btnBack_Clicked" Text="Back" TextColor="{StaticResource TextPrimary}" CornerRadius="10" BackgroundColor="{StaticResource Primary}"/>
             </StackLayout>
