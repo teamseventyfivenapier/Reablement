@@ -2,13 +2,110 @@
 <ContentPage
     x:Class="ReablementApp.Views.GoalsOverviewPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:helpers="clr-namespace:ReablementApp.Helpers"
+    xmlns:viewmodels="clr-namespace:ReablementApp.ViewModels"
+    xmlns:model="clr-namespace:ReablementApp.Models"
+    x:DataType="viewmodels:GoalsOverviewViewModel"
+    BackgroundColor="{StaticResource Background}">
+
+    <ContentPage.BindingContext>
+        <viewmodels:GoalsOverviewViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-            <Label
-                HorizontalOptions="CenterAndExpand"
-                Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Frame BackgroundColor="{StaticResource Primary}">
+                <StackLayout>
+                    <Label
+                        Text="Goals"
+                        TextColor="{StaticResource TextPrimary}"
+                        FontSize="Large"
+                        HorizontalOptions="CenterAndExpand"/>
+                    <Image>
+                        <Image.Source>
+                            <FontImageSource
+                                FontFamily="FASolid" 
+                                Glyph="{x:Static helpers:FAIcons.User}"
+                                Size="50"
+                                Color="LightYellow"/>
+                        </Image.Source>
+                    </Image>
+                    <Label
+                        Text="User"
+                        TextColor="{StaticResource TextPrimary}"
+                        FontSize="Large"
+                        HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+            </Frame>
+
+            <Button
+                Grid.Row="1"
+                x:Name="lvAddGoal"
+                BackgroundColor="{StaticResource Primary}"
+                BorderColor="Black"
+                CornerRadius="10"
+                Margin="0,0,10,0"
+                HorizontalOptions="End"
+                VerticalOptions="CenterAndExpand"
+                Text="Add Goal"                
+                TextColor="{StaticResource TextPrimary}"/>
+            <Entry 
+                Grid.Row="1"
+                WidthRequest="300"
+                Margin="10,0,0,0"
+                HorizontalOptions="StartAndExpand"
+                Placeholder="Enter Goal Name"                
+                FontSize="Large"
+                TextColor="{StaticResource TextPrimary}"/>
+
+            <CollectionView
+                x:Name="lvGoals"
+                ItemsSource="{Binding Goals}"
+                SelectionChanged="lvGoals_SelectionChanged"
+                SelectionMode="Single"
+                Grid.Row="2"
+                BackgroundColor="Transparent">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" HorizontalItemSpacing="0" VerticalItemSpacing="0" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Goal">
+                        <Frame CornerRadius="10" OutlineColor="LightGray" Padding="20" HasShadow="True" HorizontalOptions="StartAndExpand">
+                            <StackLayout Padding="10">
+                                <Grid RowDefinitions="Auto,*" ColumnDefinitions="Auto,*">
+                                    <Image>
+                                        <Image.Source>
+                                            <FontImageSource
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                FontFamily="FASolid" 
+                                                Glyph="{x:Static helpers:FAIcons.Star}"
+                                                Size="20"
+                                                Color="{StaticResource Primary}"/>
+                                        </Image.Source>
+                                    </Image>
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        VerticalOptions="Center"
+                                        FontSize="Large"
+                                        Text="{Binding GoalName}"/>
+                                    <ProgressBar
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Progress="0.5"
+                                        ProgressColor="Green"/>
+                                </Grid>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
