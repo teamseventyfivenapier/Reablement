@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:ReablementApp.ViewModels"
+             x:Class="ReablementApp.Views.FeedbackSendPage"
+             xmlns:model="clr-namespace:ReablementApp.Models"
+             xmlns:helpers="clr-namespace:ReablementApp.Helpers"
+             x:DataType="viewmodels:FeedbackSendViewModel"
+             BackgroundColor="{StaticResource Background}">
+    
+    <ContentPage.BindingContext>
+        <viewmodels:FeedbackSendViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Frame BackgroundColor="{StaticResource Primary}">
+                <StackLayout>
+                    <Label
+                        Text="Send Feedback"
+                        TextColor="{StaticResource TextPrimary}"
+                        FontSize="Large"
+                        HorizontalOptions="CenterAndExpand"/>
+                    <Image>
+                        <Image.Source>
+                            <FontImageSource
+                                FontFamily="FASolid" 
+                                Glyph="{x:Static helpers:FAIcons.User}"
+                                Size="50"
+                                Color="LightYellow"/>
+                        </Image.Source>
+                    </Image>
+                    <Label
+                        Text="User"
+                        TextColor="{StaticResource TextPrimary}"
+                        FontSize="Large"
+                        HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+            </Frame>
+            <StackLayout Grid.Row="1" Margin="10,0,10,0">
+                <Label Text="To" FontSize="Large" TextColor="{StaticResource TextPrimary}"/>
+                <Frame Padding="0" Margin="0">
+                    <Entry x:Name="sendMsgUsr" Text="Username"/>
+                </Frame>
+                <Label Text="Message" FontSize="Large" TextColor="{StaticResource TextPrimary}"/>
+                <Frame Padding="0" Margin="0">
+                    <Editor x:Name="sendMsg" Text="Message" AutoSize="TextChanges" HeightRequest="300"/>
+                </Frame>
+                <Button x:Name="btnSendMsg" Clicked="btnSendMsg_Clicked" Text="Send" TextColor="{StaticResource TextPrimary}" CornerRadius="10" BackgroundColor="{StaticResource Primary}"/>
+                <Button x:Name="btnBack" Clicked="btnBack_Clicked" Text="Back" TextColor="{StaticResource TextPrimary}" CornerRadius="10" BackgroundColor="{StaticResource Primary}"/>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
