@@ -2,13 +2,115 @@
 <ContentPage
     x:Class="ReablementApp.Views.FeedbackPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:viewmodels="clr-namespace:ReablementApp.ViewModels"
+    xmlns:model="clr-namespace:ReablementApp.Models"
+    xmlns:helpers="clr-namespace:ReablementApp.Helpers"
+    x:DataType="viewmodels:FeedbackViewModel"
+    BackgroundColor="{StaticResource Background}">
+    
+    <ContentPage.BindingContext>
+        <viewmodels:FeedbackViewModel/>
+    </ContentPage.BindingContext>
+    
     <ContentPage.Content>
-        <StackLayout>
-            <Label
-                HorizontalOptions="CenterAndExpand"
-                Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Frame BackgroundColor="{StaticResource Primary}">
+                <StackLayout>
+                    <Label
+                        Text="Feedback"
+                        TextColor="{StaticResource TextPrimary}"
+                        FontSize="Large"
+                        HorizontalOptions="CenterAndExpand"/>
+                    <Image>
+                        <Image.Source>
+                            <FontImageSource
+                                FontFamily="FASolid" 
+                                Glyph="{x:Static helpers:FAIcons.User}"
+                                Size="50"
+                                Color="LightYellow"/>
+                        </Image.Source>
+                    </Image>
+                    <Label
+                        Text="User"
+                        TextColor="{StaticResource TextPrimary}"
+                        FontSize="Large"
+                        HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+            </Frame>
+
+            <Button
+                Grid.Row="1"
+                x:Name="btnSendFeedback"
+                Clicked="btnSendFeedback_Clicked"
+                BackgroundColor="{StaticResource Primary}"
+                BorderColor="Black"
+                CornerRadius="10"
+                Margin="0,0,10,0"
+                HorizontalOptions="End"
+                VerticalOptions="CenterAndExpand"
+                Text="Send Feedback"                
+                TextColor="{StaticResource TextPrimary}"/>
+
+            <CollectionView
+                x:Name="cvFeedback"
+                SelectionChanged="cvFeedback_SelectionChanged"
+                SelectionMode="Single"
+                Grid.Row="2"
+                BackgroundColor="Transparent">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" HorizontalItemSpacing="0" VerticalItemSpacing="0" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>test</x:String>
+                        <x:String>test</x:String>
+                        <x:String>test</x:String>
+                        <x:String>test</x:String>
+                        <x:String>test</x:String>
+                    </x:Array>
+                </CollectionView.ItemsSource>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Feedback">
+                        <Frame CornerRadius="10" OutlineColor="LightGray" Padding="20" HasShadow="True" HorizontalOptions="StartAndExpand">
+                            <StackLayout Padding="10">
+                                <Grid RowDefinitions="Auto,*" ColumnDefinitions="Auto,*">
+                                    <Image>
+                                        <Image.Source>
+                                            <FontImageSource
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                FontFamily="FASolid" 
+                                                Glyph="{x:Static helpers:FAIcons.Envelope}"
+                                                Size="20"
+                                                Color="{StaticResource Primary}"/>
+                                        </Image.Source>
+                                    </Image>
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        VerticalOptions="Center"
+                                        FontSize="Large"
+                                        Text="Feedback Name"
+                                        TextColor="{StaticResource TextPrimary}"/>
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        VerticalOptions="Center"
+                                        FontSize="Medium"
+                                        Text="Date: 31/03/2021"
+                                        TextColor="{StaticResource TextPrimary}"/>
+                                </Grid>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

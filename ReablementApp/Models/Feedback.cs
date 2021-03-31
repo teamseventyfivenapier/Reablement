@@ -4,7 +4,9 @@ using System.Text;
 
 namespace ReablementApp.Models
 {
-    class Feedback
+    public class Feedback
     {
+        public string FeedbackName { get; set; }
+        public DateTime FeedbackDate { get; set; }
     }
 }
