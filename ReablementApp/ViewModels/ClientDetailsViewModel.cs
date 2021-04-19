@@ -53,7 +53,7 @@ namespace ReablementApp.ViewModels
             }
         }
 
-        private string clientFirstName = "Test";
+        private string clientFirstName;
 
         public string ClientFirstName
         {

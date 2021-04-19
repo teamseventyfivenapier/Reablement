@@ -20,20 +20,7 @@ namespace ReablementApp.Views
             BindingContext = new GoalsOverviewViewModel();
         }
 
-        async void lvGoals_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var goal = e.CurrentSelection.FirstOrDefault() as Goal;
-            if (goal == null)
-                return;
-
-            await Navigation.PushAsync(new CurrentGoalPage(goal));
-            //await Navigation.PushAsync(new CurrentGoalPage(goalDetails.GoalName, goalDetails.Tasks));
-            //var goal = ((CollectionView)sender).SelectedItem as Models.GoalModel;
-            //if (goal == null)
-            //    return;
-            //await DisplayAlert("Goal Selected", goal.GoalName, "OK");
-        }
-
+      
         //private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
         //{
         //    ((ListView)sender).SelectedItem = null;

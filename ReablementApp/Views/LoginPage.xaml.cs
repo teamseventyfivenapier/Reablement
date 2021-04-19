@@ -48,7 +48,15 @@ namespace ReablementApp.Views
 
             User.CurrentUser = picker.SelectedItem.ToString();
 
-            Application.Current.MainPage = new AppShell();
+            if (User.CurrentUser == "Client")
+            {
+                Application.Current.MainPage = new AppShell();
+            }
+            else
+            {
+                Application.Current.MainPage = new ClientsPage();
+            }
+           
         }
     }
 }

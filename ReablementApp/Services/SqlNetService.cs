@@ -25,6 +25,8 @@ namespace ReablementApp.Services
             db = new SQLiteAsyncConnection(databasePath);
 
             await db.CreateTableAsync<Client>();
+            await db.CreateTableAsync<Goal>();
+            await db.CreateTableAsync<GoalsTasks>();
             await db.CreateTableAsync<Account>();
         }
 
