@@ -12,22 +12,21 @@ using Xamarin.Forms.Xaml;
 namespace ReablementApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class FeedbackPage : ContentPage
+    public partial class FeedbackSendPage : ContentPage
     {
-        public FeedbackPage()
+        public FeedbackSendPage()
         {
             InitializeComponent();
-            BindingContext = new FeedbackViewModel();
+            BindingContext = new FeedbackSendViewModel();
         }
 
-        private void cvFeedback_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void btnSendMsg_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new FeedbackDetailsPage());
         }
 
-        private void btnSendFeedback_Clicked(object sender, EventArgs e)
+        private void btnBack_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new FeedbackSendPage());
+            Navigation.PushAsync(new FeedbackPage());
         }
     }
 }
