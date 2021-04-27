@@ -3,6 +3,7 @@ using ReablementApp.Models;
 using ReablementApp.Services;
 using ReablementApp.Views;
 using System;
+using System.Text.RegularExpressions;
 using Xamarin.Forms;
 
 namespace ReablementApp.ViewModels
@@ -38,6 +39,20 @@ namespace ReablementApp.ViewModels
         #endregion Constructor Method
 
         #region Clients Properties
+        private string clientChiNumber;
+
+        public string ClientChiNumber
+        {
+            get => clientChiNumber;
+            set
+            {
+                if (value == clientChiNumber)
+                    return;
+                clientChiNumber = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         private string clientFullName;
 
@@ -53,7 +68,7 @@ namespace ReablementApp.ViewModels
             }
         }
 
-        private string clientFirstName = "Test";
+        private string clientFirstName;
 
         public string ClientFirstName
         {
@@ -221,6 +236,8 @@ namespace ReablementApp.ViewModels
         {
             if (CurrentClientModel.CurrentClientID != 0)
             {
+              
+                clientChiNumber = CurrentClientModel.CurrentClientChiNumber;
                 ClientFullName = $"{CurrentClientModel.CurrentClientFirstName} {CurrentClientModel.CurrentClientLastName}";
                 ClientFirstName = CurrentClientModel.CurrentClientFirstName;
                 ClientSurname = CurrentClientModel.CurrentClientLastName;
@@ -236,6 +253,8 @@ namespace ReablementApp.ViewModels
             }
             else
             {
+                
+                ClientChiNumber = "";
                 ClientFullName = "";
                 ClientFirstName = "";
                 ClientSurname = "";
@@ -259,6 +278,13 @@ namespace ReablementApp.ViewModels
             {
                 await App.Current.MainPage.DisplayAlert("First Name input is empty", "Please insert First Name", "OK");
                 return;
+            }
+            else if (!Regex.IsMatch(clientChiNumber.ToString(), @"^\d{10}$"))
+            {
+                clientChiNumber = CurrentClientModel.CurrentClientChiNumber;
+                await App.Current.MainPage.DisplayAlert("Invalid CHI Number, must be 10 digits", "try again", "OK");
+                return;
+
             }
             else if (ClientSurname == "")
             {
@@ -290,6 +316,7 @@ namespace ReablementApp.ViewModels
                     var client = new Client
                     {
                         Id = CurrentClientModel.CurrentClientID,
+                        ChiNumber = clientChiNumber,
                         FirstName = ClientFirstName,
                         LastName = ClientSurname,
                         DOB = ClientDOB.Date,

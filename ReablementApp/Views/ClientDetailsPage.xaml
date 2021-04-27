@@ -8,7 +8,7 @@
     xmlns:mvvm="clr-namespace:MvvmHelpers;assembly=MvvmHelpers"
     xmlns:viewmodels="clr-namespace:ReablementApp.ViewModels"
     x:DataType="viewmodels:ClientDetailsViewModel"
-    BackgroundColor="{StaticResource Background}">
+    BackgroundColor="White">
     <ContentPage.BindingContext>
         <viewmodels:ClientDetailsViewModel />
     </ContentPage.BindingContext>
@@ -29,147 +29,191 @@
 
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Padding="30">
+            <StackLayout>
+                <Frame BackgroundColor="{StaticResource Primary}" HorizontalOptions="FillAndExpand">
+                    <StackLayout>
+                        <Label
+                            FontSize="Title"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="Client Details"
+                            TextColor="Black" />
+                        <Label
+                            FontSize="50"
+                            HorizontalOptions="CenterAndExpand"
+                            Style="{StaticResource UserIcon}"
+                            Text="{x:Static helpers:FAIcons.User}"
+                            TextColor="White" />
+                        <Label
+                            x:Name="LblClientName"
+                            FontSize="Large"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="{Binding ClientFullName}"
+                            TextColor="Black" />
+                    </StackLayout>
+
+                </Frame>
+
                 <Label
-                    FontSize="30"
-                    HorizontalOptions="Center"
-                    Text="Client Details"
-                    TextColor="Black" />
-                <Label
-                    Margin="0,0,0,5"
-                    Style="{StaticResource UserIcon}"
-                    Text="{x:Static helpers:FAIcons.User}" />
-                <Label
-                    x:Name="LblClientName"
-                    FontSize="Large"
-                    HorizontalOptions="Center"
-                    Text="{Binding ClientFullName}"
-                    TextColor="Black" />
-                <Label
-                    Margin="5,20,0,-10"
+                    Margin="15,20,0,0"
                     FontSize="Medium"
-                    Text="First Names" />
+                    Text="CHI Number"
+                    TextColor="Black" />
+                <Entry
+                    x:Name="EntClientChiNumber"
+                    Margin="15,-5,15,0"
+                    x:DataType="viewmodels:ClientDetailsViewModel"
+                    ClearButtonVisibility="WhileEditing"
+                    Placeholder="Enter CHI Number"
+                    PlaceholderColor="DimGray"
+                    Text="{Binding ClientChiNumber}"
+                    TextColor="Black" />
+                <Label
+                    Margin="15,5,15,0"
+                    FontSize="Medium"
+                    Text="First Names"
+                    TextColor="Black" />
                 <Entry
                     x:Name="EntClientFirstName"
+                    Margin="15,-5,15,0"
                     x:DataType="viewmodels:ClientDetailsViewModel"
+                    ClearButtonVisibility="WhileEditing"
                     Placeholder="Enter Name"
-                    Text="{Binding ClientFirstName}" />
+                    PlaceholderColor="DimGray"
+                    Text="{Binding ClientFirstName}"
+                    TextColor="Black" />
                 <Label
-                    Margin="5,0,0,-10"
+                    Margin="15,5,15,0"
                     FontSize="Medium"
-                    Text="Surname" />
+                    Text="Surname"
+                    TextColor="Black" />
                 <Entry
                     x:Name="EntClientLastName"
+                    Margin="15,-5,15,0"
                     x:DataType="viewmodels:ClientDetailsViewModel"
+                    ClearButtonVisibility="WhileEditing"
                     Placeholder="Enter Name"
-                    Text="{Binding ClientSurname}" />
+                    PlaceholderColor="DimGray"
+                    Text="{Binding ClientSurname}"
+                    TextColor="Black" />
                 <Label
-                    Margin="5,0,0,-10"
+                    Margin="15,5,15,0"
                     FontSize="Medium"
-                    Text="Date of Bith" />
-                <DatePicker x:Name="DateClientDOB" Date="{Binding ClientDOB}" />
+                    Text="Date of Birth"
+                    TextColor="Black" />
+                <DatePicker
+                    x:Name="DateClientDOB"
+                    Margin="15,-5,15,0"
+                    Date="{Binding ClientDOB}"
+                    TextColor="Black" />
                 <Label
-                    Margin="5,0,0,-10"
+                    Margin="15,5,15,0"
                     FontSize="Medium"
-                    Text="Age" />
+                    Text="Age"
+                    TextColor="Black" />
                 <Entry
                     x:Name="EntClientAge"
+                    Margin="15,-5,15,0"
                     x:DataType="viewmodels:ClientDetailsViewModel"
+                    ClearButtonVisibility="WhileEditing"
                     Placeholder="Age"
-                    Text="{Binding ClientAge}" />
+                    PlaceholderColor="DimGray"
+                    Text="{Binding ClientAge}"
+                    TextColor="Black" />
                 <Label
-                    Margin="5,0,0,-10"
+                    Margin="15,5,15,0"
                     FontSize="Medium"
-                    Text="Address" />
+                    Text="Address"
+                    TextColor="Black" />
                 <Entry
                     x:Name="EntClientAddress"
+                    Margin="15,-5,15,0"
                     x:DataType="viewmodels:ClientDetailsViewModel"
+                    ClearButtonVisibility="WhileEditing"
                     Placeholder="Address"
-                    Text="{Binding ClientAddress}" />
+                    PlaceholderColor="DimGray"
+                    Text="{Binding ClientAddress}"
+                    TextColor="Black" />
                 <Label
-                    Margin="5,0,0,-10"
+                    Margin="15,5,15,0"
                     FontSize="Medium"
-                    Text="Medical Conditons" />
+                    Text="Medical Conditons"
+                    TextColor="Black" />
                 <Entry
                     x:Name="EntClientMedicalConditions"
+                    Margin="15,-5,15,0"
                     x:DataType="viewmodels:ClientDetailsViewModel"
+                    ClearButtonVisibility="WhileEditing"
                     Placeholder="Medical Conditions"
-                    Text="{Binding ClientMedicalConditions}" />
+                    PlaceholderColor="DimGray"
+                    Text="{Binding ClientMedicalConditions}"
+                    TextColor="Black" />
                 <Label
-                    Margin="5,0,0,-10"
+                    Margin="15,5,15,0"
                     FontSize="Medium"
-                    Text="Accident History" />
+                    Text="Accident History"
+                    TextColor="Black" />
                 <Entry
                     x:Name="EntClientMedicalAccidentHistory"
+                    Margin="15,-5,15,0"
                     x:DataType="viewmodels:ClientDetailsViewModel"
+                    ClearButtonVisibility="WhileEditing"
                     Placeholder="Accident History"
-                    Text="{Binding ClientAccidentHist}" />
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                    PlaceholderColor="DimGray"
+                    Text="{Binding ClientAccidentHist}"
+                    TextColor="Black" />
+                <Label
+                    Margin="15,5,15,0"
+                    FontSize="Medium"
+                    Text="Time on Reablement"
+                    TextColor="Black" />
+                <Entry
+                    x:Name="EntTimeOnRE"
+                    Margin="15,-5,15,0"
+                    x:DataType="viewmodels:ClientDetailsViewModel"
+                    ClearButtonVisibility="WhileEditing"
+                    Placeholder="Time on Reablement"
+                    Text="{Binding TimeOnRE}"
+                    TextColor="Black" />
 
-                    <Label
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        Margin="0,16,0,0"
-                        FontSize="Small"
-                        Text="Time on Reablement" />
-                    <Entry
-                        x:Name="EntTimeOnRE"
-                        Grid.Row="0"
-                        Grid.Column="1"
-                        x:DataType="viewmodels:ClientDetailsViewModel"
-                        Text="{Binding TimeOnRE}" />
+                <Label
+                    Margin="15,5,15,0"
+                    FontSize="Medium"
+                    Text="Joined Reablement"
+                    TextColor="Black" />
+                <DatePicker
+                    x:Name="DateJoinedRE"
+                    Margin="15,-5,15,0"
+                    x:DataType="viewmodels:ClientDetailsViewModel"
+                    Date="{Binding DateJoinedRE}"
+                    TextColor="Black" />
+                <Label
+                    x:Name="lblAppointedOT"
+                    Margin="15,5,15,0"
+                    FontSize="Medium"
+                    Text="Appointed OT"
+                    TextColor="Black" />
+                <DatePicker
+                    x:Name="DateApointedOT"
+                    Margin="15,-5,15,0"
+                    x:DataType="viewmodels:ClientDetailsViewModel"
+                    Date="{Binding DateApointedOT}"
+                    TextColor="Black" />
+                <Label
+                    x:Name="lblAppointedCarer"
+                    Margin="15,5,15,0"
+                    FontSize="Medium"
+                    Text="Appointed Carer"
+                    TextColor="Black" />
+                <DatePicker
+                    x:Name="DateAppointedCarer"
+                    Margin="15,-5,15,0"
+                    x:DataType="viewmodels:ClientDetailsViewModel"
+                    Date="{Binding DateAppointedCarer}"
+                    TextColor="Black" />
 
-                    <Label
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        Margin="0,16,0,0"
-                        FontSize="Small"
-                        Text="Joined Reablement" />
-                    <DatePicker
-                        x:Name="DateJoinedRE"
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        x:DataType="viewmodels:ClientDetailsViewModel"
-                        Date="{Binding DateJoinedRE}" />
-                    <Label
-                        x:Name="lblAppointedOT"
-                        Grid.Row="2"
-                        Grid.Column="0"
-                        Margin="0,16,0,0"
-                        FontSize="Small"
-                        Text="Appointed OT" />
-                    <DatePicker
-                        x:Name="DateApointedOT"
-                        Grid.Row="2"
-                        Grid.Column="1"
-                        x:DataType="viewmodels:ClientDetailsViewModel"
-                        Date="{Binding DateApointedOT}" />
-                    <Label
-                        x:Name="lblAppointedCarer"
-                        Grid.Row="3"
-                        Grid.Column="0"
-                        Margin="0,16,0,0"
-                        FontSize="Small"
-                        Text="Appointed Carer" />
-                    <DatePicker
-                        x:Name="DateAppointedCarer"
-                        Grid.Row="3"
-                        Grid.Column="1"
-                        x:DataType="viewmodels:ClientDetailsViewModel"
-                        Date="{Binding DateAppointedCarer}" />
-                </Grid>
 
                 <Button
-                    Margin="0,20,0,0"
+                    Margin="15,5,15,0"
                     BackgroundColor="{StaticResource ButtonBlue}"
                     BorderColor="Black"
                     BorderWidth="1"
@@ -179,7 +223,7 @@
                     Text="Update"
                     TextColor="Black" />
                 <Button
-                    Margin="0,20,0,0"
+                    Margin="15,5,15,0"
                     BackgroundColor="{StaticResource ButtonGreen}"
                     BorderColor="Black"
                     BorderWidth="1"

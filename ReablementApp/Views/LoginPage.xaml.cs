@@ -1,5 +1,9 @@
-﻿using ReablementApp.Models;
+﻿using MvvmHelpers;
+using ReablementApp.Models;
+using ReablementApp.Services;
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -9,9 +13,17 @@ namespace ReablementApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
+        //Create a new ObservableRangeCollection of type Client for the current client. This will notifiy us
+        //When items are changed
+        public ObservableRangeCollection<Client> CurrentClient { get; set; }
+
         public LoginPage()
         {
             InitializeComponent();
+
+            _ = LoadClients();
+
+            CurrentClient = new ObservableRangeCollection<Client>();
 
             SetPreferences();
         }
@@ -48,7 +60,64 @@ namespace ReablementApp.Views
 
             User.CurrentUser = picker.SelectedItem.ToString();
 
-            Application.Current.MainPage = new AppShell();
+            if (User.CurrentUser == "Client")
+            {
+             
+
+                try
+                {
+                    var currentClient = ClientService.GetClientChiNumberAsync(EntUserName.Text);
+                    CurrentClientModel.CurrentClientID = currentClient.Result.Id;
+                    CurrentClientModel.CurrentClientChiNumber = currentClient.Result.ChiNumber;
+                    CurrentClientModel.CurrentClientFirstName = currentClient.Result.FirstName;
+                    CurrentClientModel.CurrentClientLastName = currentClient.Result.LastName;
+                    CurrentClientModel.DOB = currentClient.Result.DOB;
+                    CurrentClientModel.Age = currentClient.Result.Age;
+                    CurrentClientModel.Address = currentClient.Result.Address;
+                    CurrentClientModel.MedicalConditions = currentClient.Result.MedicalConditions;
+                    CurrentClientModel.AccidentHistory = currentClient.Result.AccidentHistory;
+                    CurrentClientModel.TimeOnRE = currentClient.Result.TimeOnRE;
+                    CurrentClientModel.JoinedRE = currentClient.Result.JoinedRE;
+                    CurrentClientModel.AppointedCarer = currentClient.Result.AppointedCarer;
+                    CurrentClientModel.AppointedOT = currentClient.Result.AppointedOT;
+
+
+                    Application.Current.MainPage = new AppShell();
+
+                }
+                catch (Exception)
+                {
+
+                    Application.Current.MainPage.DisplayAlert("Wrong CHI Number entered, must be 10 digits", "Try again", "OK");
+                    return;
+                }
+               
+                
+               
+
+            }
+            else
+            {
+                Application.Current.MainPage = new ClientsPage();
+            }
+           
+
+        }
+
+        //Loads list of clients to the Clients Page when users pulls down to refresh 
+        private async Task LoadClients()
+        {
+            IsBusy = true;
+
+            await Task.Delay(2000);
+
+            CurrentClient.Clear();
+
+            var clients = await ClientService.GetClients();
+
+            CurrentClient.AddRange(clients);
+
+            IsBusy = false;
         }
     }
 }

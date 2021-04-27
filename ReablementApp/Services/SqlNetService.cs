@@ -9,8 +9,10 @@ using Xamarin.Essentials;
 
 namespace ReablementApp.Services
 {
+    //This class uses th SqlNet Nuget package to help create Sql database and tables. 
     public class SqlNetService
     {
+        //Create database connection, named db
         public static SQLiteAsyncConnection db;
 
         //create our database and our tables
@@ -22,9 +24,13 @@ namespace ReablementApp.Services
             // Get an absolute path to the database file
             var databasePath = Path.Combine(FileSystem.AppDataDirectory, "MyData.db");
 
+            //Create an new connection to the database and pass in the database path
             db = new SQLiteAsyncConnection(databasePath);
 
+            //Create tables for our models 
             await db.CreateTableAsync<Client>();
+            await db.CreateTableAsync<Goal>();
+            await db.CreateTableAsync<GoalsTasks>();
             await db.CreateTableAsync<Account>();
         }
 

@@ -4,7 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-    BackgroundColor="#f5f5f5">
+    BackgroundColor="White">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -31,8 +31,13 @@
                 <Entry
                     x:Name="EntUserName"
                     Margin="20,40,20,0"
+                    BackgroundColor="White"
+                    ClearButtonVisibility="WhileEditing"
                     HeightRequest="50"
-                    Placeholder="Enter User Name">
+                    HorizontalOptions="FillAndExpand"
+                    Placeholder="Enter User Name"
+                    PlaceholderColor="DimGray"
+                    TextColor="Black">
                     <Entry.Behaviors>
                         <xct:EmailValidationBehavior InvalidStyle="{StaticResource InvalidStyle}" />
                     </Entry.Behaviors>
@@ -42,14 +47,20 @@
                 <Entry
                     x:Name="EntPassword"
                     Margin="20,0,20,0"
+                    ClearButtonVisibility="WhileEditing"
                     HeightRequest="50"
+                    HorizontalOptions="FillAndExpand"
                     IsPassword="true"
-                    Placeholder="Password" />
+                    Placeholder="Password"
+                    PlaceholderColor="DimGray"
+                    TextColor="Black" />
 
                 <Picker
                     x:Name="picker"
                     Title="Select a user type"
                     Margin="20,20,20,0"
+                    HorizontalOptions="FillAndExpand"
+                    TextColor="Black"
                     TitleColor="Red">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">

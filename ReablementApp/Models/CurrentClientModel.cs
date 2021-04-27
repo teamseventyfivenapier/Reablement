@@ -5,10 +5,11 @@ using System.Text;
 
 namespace ReablementApp.Models
 {
-    //This model is used to share the current client tghroughout the application
+    //This model is used to share the current client throughout the application
     public static class CurrentClientModel
     {
         public static int CurrentClientID;
+        public static string CurrentClientChiNumber;
         public static string CurrentClientFirstName;
         public static string CurrentClientLastName;
         public static DateTime dob;

@@ -19,16 +19,14 @@ namespace ReablementApp.Views
             InitializeComponent();
             //currentGoal.Text = GoalName;
             //currentTask.Text = Task;
+            BindingContext = new CurrentGoalViewModel();
         }
-        public CurrentGoalPage(Goal goal)
-        {
-            InitializeComponent();
-            BindingContext = new CurrentGoalViewModel(goal);
-        }
+      
 
         private void btnBack_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new GoalsOverviewPage());
+            Application.Current.MainPage = new AppShell();
+         
         }
     }
 }
