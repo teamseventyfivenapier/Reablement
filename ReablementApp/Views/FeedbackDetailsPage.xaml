@@ -1,55 +1,71 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewmodels="clr-namespace:ReablementApp.ViewModels"
-             x:Class="ReablementApp.Views.FeedbackDetailsPage"
-             xmlns:model="clr-namespace:ReablementApp.Models"
-             xmlns:helpers="clr-namespace:ReablementApp.Helpers"
-             x:DataType="viewmodels:FeedbackDetailsViewModel"
-             BackgroundColor="{StaticResource Background}">
+<ContentPage
+    x:Class="ReablementApp.Views.FeedbackDetailsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:helpers="clr-namespace:ReablementApp.Helpers"
+    xmlns:model="clr-namespace:ReablementApp.Models"
+    xmlns:viewmodels="clr-namespace:ReablementApp.ViewModels"
+    x:DataType="viewmodels:FeedbackDetailsViewModel"
+    BackgroundColor="{StaticResource Background}">
 
     <ContentPage.BindingContext>
-        <viewmodels:FeedbackDetailsViewModel/>
+        <viewmodels:FeedbackDetailsViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="150"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="150" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Frame BackgroundColor="{StaticResource Primary}">
                 <StackLayout>
                     <Label
-                        Text="Feedback Details"
-                        TextColor="{StaticResource TextPrimary}"
                         FontSize="Large"
-                        HorizontalOptions="CenterAndExpand"/>
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Feedback Details"
+                        TextColor="{StaticResource TextPrimary}" />
                     <Image>
                         <Image.Source>
                             <FontImageSource
-                                FontFamily="FASolid" 
+                                FontFamily="FASolid"
                                 Glyph="{x:Static helpers:FAIcons.User}"
                                 Size="50"
-                                Color="LightYellow"/>
+                                Color="LightYellow" />
                         </Image.Source>
                     </Image>
                     <Label
-                        Text="User"
-                        TextColor="{StaticResource TextPrimary}"
                         FontSize="Large"
-                        HorizontalOptions="CenterAndExpand"/>
+                        HorizontalOptions="CenterAndExpand"
+                        Text="User"
+                        TextColor="{StaticResource TextPrimary}" />
                 </StackLayout>
             </Frame>
             <StackLayout Grid.Row="1" Margin="10,0,10,0">
-                <Label Text="From" FontSize="Large" TextColor="{StaticResource TextPrimary}"/>
-                <Frame Padding="0" Margin="0">
-                    <Label x:Name="FeedbackMsgUsr" Text="Username"/>
+                <Label
+                    FontSize="Large"
+                    Text="From"
+                    TextColor="{StaticResource TextPrimary}" />
+                <Frame Margin="0" Padding="0">
+                    <Label x:Name="FeedbackMsgUsr" Text="Username" />
                 </Frame>
-                <Label Text="Message" FontSize="Large" TextColor="{StaticResource TextPrimary}"/>
-                <Frame Padding="0" Margin="0">
-                    <Label x:Name="FeedbackMsg" Text="Message" HeightRequest="300"/>
+                <Label
+                    FontSize="Large"
+                    Text="Message"
+                    TextColor="{StaticResource TextPrimary}" />
+                <Frame Margin="0" Padding="0">
+                    <Label
+                        x:Name="FeedbackMsg"
+                        HeightRequest="300"
+                        Text="Message" />
                 </Frame>
-                <Button x:Name="btnBack" Clicked="btnBack_Clicked" Text="Back" TextColor="{StaticResource TextPrimary}" CornerRadius="10" BackgroundColor="{StaticResource Primary}"/>
+                <Button
+                    x:Name="btnBack"
+                    BackgroundColor="{StaticResource Primary}"
+                    Clicked="btnBack_Clicked"
+                    CornerRadius="10"
+                    Text="Back"
+                    TextColor="{StaticResource TextPrimary}" />
             </StackLayout>
         </Grid>
     </ContentPage.Content>

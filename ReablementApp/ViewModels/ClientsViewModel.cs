@@ -60,7 +60,7 @@ namespace ReablementApp.ViewModels
         }
 
         //The Selected method takes the values of the selected client from the ClientsPage and stores them as the current client
-        //from the CurrentClientModel. The loads the mai page as the App Shell. 
+        //from the CurrentClientModel. The loads the main page as the App Shell. 
         public async Task Selected(object args)
         {
             var client = args as Client;
@@ -72,6 +72,7 @@ namespace ReablementApp.ViewModels
             await Application.Current.MainPage.DisplayAlert("Selected", $"{client.FirstName}  {client.LastName}", "OK");
 
             CurrentClientModel.CurrentClientID = client.Id;
+            CurrentClientModel.CurrentClientChiNumber = client.ChiNumber;
             CurrentClientModel.CurrentClientFirstName = client.FirstName;
             CurrentClientModel.CurrentClientLastName = client.LastName;
             CurrentClientModel.DOB = client.DOB;

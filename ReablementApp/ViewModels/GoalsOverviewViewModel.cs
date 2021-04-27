@@ -21,31 +21,45 @@ namespace ReablementApp.ViewModels
         public ObservableRangeCollection<Goal> Goals { get; set; }
         public AsyncCommand RefreshCommand { get; }
         public MvvmHelpers.Commands.Command AddGoalCommand { get; }
-        //This command will be used to pull in the remove method which will remove the selected goal from the database. 
+
+        //This command will be used to pull in the remove method which will remove the selected goal from the database.
         public AsyncCommand<Goal> RemoveCommand { get; }
 
         public AsyncCommand<object> SelectedCommand { get; }
 
-
         public GoalsOverviewViewModel()
         {
             PopulateGoalDetails();
-         
 
-            AddGoalCommand = new MvvmHelpers.Commands.Command(Add);
+            AddGoalCommand = new MvvmHelpers.Commands.Command(AddGoals);
 
             SelectedCommand = new AsyncCommand<object>(Selected);
 
             Goals = new ObservableRangeCollection<Goal>();
 
-           _ = LoadGoals();
+            _ = LoadGoals();
             RefreshCommand = new AsyncCommand(Refresh);
 
             RemoveCommand = new AsyncCommand<Goal>(Remove);
         }
 
-
         #region Properties
+
+        private bool _isAddGoalsVisible;
+
+        public bool IsAddGoalsVisible
+        {
+            get
+            {
+                return _isAddGoalsVisible;
+            }
+            set
+            {
+                _isAddGoalsVisible = value;
+                OnPropertyChanged("IsAddGoalsVisible");
+            }
+        }
+
         //Property for the selected client
         private Client selectedGoal;
 
@@ -69,13 +83,10 @@ namespace ReablementApp.ViewModels
             }
         }
 
-     
-
-
-        #endregion
+        #endregion Properties
 
         //The Selected method takes the values of the selected goal from the GoalOverviewPage and stores them as the current goal
-        //from the CurrentGoalModel. The loads the mai page as the App Shell. 
+        //from the CurrentGoalModel. The loads the mai page as the App Shell.
         public async Task Selected(object args)
         {
             var goal = args as Goal;
@@ -92,14 +103,10 @@ namespace ReablementApp.ViewModels
             Application.Current.MainPage = new CurrentGoalPage();
         }
 
-
-
-
-        public async void Add()
+        //Method to add goals to client.
+        public async void AddGoals()
         {
-
             var Goalname = await App.Current.MainPage.DisplayPromptAsync("Name", "Name of Goal");
-
 
             try
             {
@@ -108,13 +115,10 @@ namespace ReablementApp.ViewModels
                     Id = CurrentGoalModel.Id,
                     CurrentClientID = CurrentClientModel.CurrentClientID,
                     GoalName = Goalname,
-
-
                 };
                 await GoalsService.SaveGoalAsync(goal);
 
                 await App.Current.MainPage.DisplayAlert("Entry successful", "Goal Added", "OK");
-
             }
             catch (Exception)
             {
@@ -123,53 +127,24 @@ namespace ReablementApp.ViewModels
             }
         }
 
-        ////Method sets the properties of the client and saves them to the database.
-        //private async void SetClientDetails()
-        //{
-
-
-        //    //Try to add in the new or updated client to the clients table in the database.
-        //    try
-        //    {
-        //        var client = new Client
-        //        {
-        //            Id = CurrentClientModel.CurrentClientID,
-        //            FirstName = ClientFirstName,
-        //            LastName = ClientSurname,
-        //            DOB = ClientDOB.Date,
-        //            Age = years,
-        //            Address = ClientAddress,
-        //            MedicalConditions = ClientMedicalConditions,
-        //            AccidentHistory = ClientAccidentHist,
-        //            TimeOnRE = timeOnRE,
-        //            JoinedRE = DateJoinedRE.Date,
-        //            AppointedCarer = DateAppointedCarer.Date,
-        //            AppointedOT = DateApointedOT.Date
-        //        };
-        //        await ClientService.SaveClientAsync(client);
-
-        //        await App.Current.MainPage.DisplayAlert("Update Successful", "Client details updated", "OK");
-
-        //        Application.Current.MainPage = new ClientsPage();
-        //    }
-        //    catch (Exception)
-        //    {
-        //        await App.Current.MainPage.DisplayAlert("Wrong details", "try again", "OK");
-        //    }
-        //}
-
-
         public void PopulateGoalDetails()
         {
             if (CurrentClientModel.CurrentClientID != 0)
             {
                 ClientFullName = $"{CurrentClientModel.CurrentClientFirstName} {CurrentClientModel.CurrentClientLastName}";
-               
-            }
 
+                if (User.CurrentUser == "Client")
+                {
+                    IsAddGoalsVisible = false;
+                }
+                else
+                {
+                    IsAddGoalsVisible = true;
+                }
+            }
         }
 
-        //Loads list of goals to the Goals Page when users pulls down to refresh 
+        //Loads list of goals to the Goals Page when users pulls down to refresh
         private async Task Refresh()
         {
             IsBusy = true;
@@ -185,7 +160,7 @@ namespace ReablementApp.ViewModels
             IsBusy = false;
         }
 
-        //Loads in a list of goals from the Goals table in the database. 
+        //Loads in a list of goals from the Goals table in the database.
         private async Task LoadGoals()
         {
             Goals.Clear();
@@ -195,7 +170,7 @@ namespace ReablementApp.ViewModels
             Goals.AddRange(goals);
         }
 
-        //Removes the currently selected client. 
+        //Removes the currently selected client.
         private async Task Remove(Goal goal)
         {
             await GoalsService.RemoveGoal(goal.Id);

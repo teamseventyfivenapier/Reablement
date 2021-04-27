@@ -5,6 +5,7 @@ using System.Text;
 
 namespace ReablementApp.Models
 {
+    //Stores the clients goals.
     public class GoalsTasks
     {
         [PrimaryKey, AutoIncrement]

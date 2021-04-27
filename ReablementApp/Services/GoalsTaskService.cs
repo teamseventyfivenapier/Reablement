@@ -43,7 +43,5 @@ namespace ReablementApp.Services
             }
         }
 
-     
-
     }
 }

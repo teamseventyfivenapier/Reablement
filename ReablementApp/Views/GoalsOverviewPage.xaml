@@ -8,7 +8,7 @@
     xmlns:viewmodels="clr-namespace:ReablementApp.ViewModels"
     x:Name="GoalOverviewPage"
     x:DataType="viewmodels:GoalsOverviewViewModel"
-    BackgroundColor="{StaticResource Background}">
+    BackgroundColor="White">
 
     <ContentPage.BindingContext>
         <viewmodels:GoalsOverviewViewModel />
@@ -32,9 +32,9 @@
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="200" />
-                <RowDefinition Height="60" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="AUTO" />
+                <RowDefinition Height="AUTO" />
+                <RowDefinition Height="AUTO" />
             </Grid.RowDefinitions>
             <Frame BackgroundColor="{StaticResource Primary}">
                 <StackLayout>
@@ -43,37 +43,31 @@
                         HorizontalOptions="CenterAndExpand"
                         Text="Goals"
                         TextColor="{StaticResource TextPrimary}" />
-                    <Image>
-                        <Image.Source>
-                            <FontImageSource
-                                FontFamily="FASolid"
-                                Glyph="{x:Static helpers:FAIcons.User}"
-                                Size="50"
-                                Color="LightYellow" />
-                        </Image.Source>
-                    </Image>
+                    <Label
+                        FontSize="50"
+                        HorizontalOptions="CenterAndExpand"
+                        Style="{StaticResource UserIcon}"
+                        Text="{x:Static helpers:FAIcons.User}"
+                        TextColor="White" />
                     <Label
                         FontSize="Large"
                         HorizontalOptions="CenterAndExpand"
                         Text="{Binding ClientFullName}"
                         TextColor="{StaticResource TextPrimary}" />
+                    <Button
+                        x:Name="lvAddGoal"
+                        BackgroundColor="{StaticResource ButtonGreen}"
+                        BorderColor="Black"
+                        BorderWidth="1"
+                        Command="{Binding AddGoalCommand}"
+                        FontSize="Medium"
+                        HorizontalOptions="FillAndExpand"
+                        IsVisible="{Binding IsAddGoalsVisible}"
+                        Text="Add Goal"
+                        TextColor="{StaticResource TextPrimary}" />
 
                 </StackLayout>
-
             </Frame>
-            <Button
-                x:Name="lvAddGoal"
-                Grid.Row="1"
-                Margin="10,0,10,0"
-                BackgroundColor="{StaticResource ButtonGreen}"
-                BorderColor="Black"
-                BorderWidth="1"
-                Command="{Binding AddGoalCommand}"
-                FontSize="Large"
-                HeightRequest="60"
-                HorizontalOptions="FillAndExpand"
-                Text="Add Goal"
-                TextColor="{StaticResource TextPrimary}" />
 
             <ListView
                 x:Name="lvGoals"

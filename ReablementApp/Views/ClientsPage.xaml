@@ -10,7 +10,7 @@
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     x:Name="ClientPage"
     x:DataType="viewmodels:ClientsViewModel"
-    BackgroundColor="{StaticResource Background}">
+   BackgroundColor="White">
     <ContentPage.BindingContext>
         <viewmodels:ClientsViewModel />
     </ContentPage.BindingContext>
@@ -34,26 +34,31 @@
 
     <ContentPage.Content>
         <StackLayout>
+            <Frame BackgroundColor="{StaticResource Primary}" HorizontalOptions="FillAndExpand">
+                <StackLayout>
+                    <Label
+                        FontSize="Large"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Clients"
+                        TextColor="Black" />
+                    <Label
+                        FontSize="50"
+                        HorizontalOptions="CenterAndExpand"
+                        Style="{StaticResource UserIcon}"
+                        Text="{x:Static helpers:FAIcons.Users}"
+                        TextColor="White" />
+                    <Button
+                        BackgroundColor="#A2BCC5"
+                        BorderColor="Black"
+                        BorderWidth="1"
+                        Command="{Binding AddClientCommand}"
+                        FontSize="Medium"
+                        HorizontalOptions="FillAndExpand"
+                        Text="Add New Client"
+                        TextColor="Black" />
+                </StackLayout>
 
-
-            <Button
-                Margin="10,30,10,20"
-                BackgroundColor="#A2BCC5"
-                BorderColor="Black"
-                BorderWidth="1"
-                Command="{Binding AddClientCommand}"
-                FontSize="Large"
-                HeightRequest="60"
-                HorizontalOptions="FillAndExpand"
-                Text="Add New Client"
-                TextColor="Black"
-                WidthRequest="80" />
-
-            <Label
-                FontAttributes="Bold"
-                FontSize="40"
-                HorizontalOptions="CenterAndExpand"
-                Text="Clients" />
+            </Frame>
 
             <ListView
                 BackgroundColor="Transparent"
@@ -92,18 +97,22 @@
                                                 FontSize="Large"
                                                 Style="{StaticResource UserIcon}"
                                                 Text="{x:Static helpers:FAIcons.User}"
+                                                TextColor="Black"
                                                 VerticalOptions="Center" />
                                             <Label
                                                 FontSize="Large"
                                                 Text="{Binding FirstName}"
+                                                TextColor="black"
                                                 VerticalOptions="Center" />
                                             <Label
                                                 FontSize="Large"
                                                 Text="{Binding LastName}"
+                                                TextColor="Black"
                                                 VerticalOptions="Center" />
                                             <Label
                                                 FontSize="Large"
                                                 Text="{Binding Id}"
+                                                TextColor="Black"
                                                 VerticalOptions="Center" />
                                         </StackLayout>
                                     </StackLayout>

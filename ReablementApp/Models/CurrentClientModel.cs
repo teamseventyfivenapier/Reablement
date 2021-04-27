@@ -9,6 +9,7 @@ namespace ReablementApp.Models
     public static class CurrentClientModel
     {
         public static int CurrentClientID;
+        public static string CurrentClientChiNumber;
         public static string CurrentClientFirstName;
         public static string CurrentClientLastName;
         public static DateTime dob;

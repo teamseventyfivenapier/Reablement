@@ -11,6 +11,8 @@ namespace ReablementApp.Models
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
+        //The CHI number is a unique is a 10-character numeric identifier
+        public string ChiNumber { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime DOB { get; set; }
@@ -22,6 +24,5 @@ namespace ReablementApp.Models
         public DateTime JoinedRE { get; set; }
         public DateTime AppointedOT { get; set; }
         public DateTime AppointedCarer { get; set; }
-
     }
 }

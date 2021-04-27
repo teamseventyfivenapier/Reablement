@@ -9,6 +9,10 @@ namespace ReablementApp.ViewModels
 {
     public class ClientHomeViewModel : ViewModelBase
     {
+        //Create a new ObservableRangeCollection of type Client for the current client. This will notifiy us
+        //When items are changed
+        public ObservableRangeCollection<Client> CurrentClient { get; set; }
+
         public ObservableRangeCollection<Picture> Picture { get; set; }
 
         public ClientHomeViewModel()
@@ -28,10 +32,50 @@ namespace ReablementApp.ViewModels
 
             // animate to 75% progress over 500 milliseconds with linear easing
             // await progressBar.ProgressTo(0.75, 500, Easing.Linear);
+
+
+            CurrentClient = new ObservableRangeCollection<Client>();
+
+            PopulateClientDetails();
         }
 
-        public void GetUser()
+        #region Properties
+        private string clientFullName;
+
+        public string ClientFullName
         {
+            get => clientFullName;
+            set
+            {
+                if (value == clientFullName)
+                    return;
+                clientFullName = value;
+                OnPropertyChanged();
+            }
         }
+
+        private string timeOnRE;
+
+        public string TimeOnRE
+        {
+            get => timeOnRE;
+            set
+            {
+                if (value == timeOnRE)
+                    return;
+                timeOnRE = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+
+        public void PopulateClientDetails()
+        {
+            ClientFullName = $"{CurrentClientModel.CurrentClientFirstName} {CurrentClientModel.CurrentClientLastName}";
+
+            TimeOnRE = $"{CurrentClientModel.TimeOnRE.ToString()} Days";
+
+        }
+
     }
 }

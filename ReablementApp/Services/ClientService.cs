@@ -11,31 +11,7 @@ namespace ReablementApp.Services
     public class ClientService : SqlNetService
     {
 
-        //TODO Delete?
-        // Adds client to the cliet table
-        public static async Task AddClient(string firstname, string lastname, DateTime dob, int age, string address,
-            string medicalConditions, string accidentHistory, double timeOnRE, DateTime JoinedRE, DateTime appointedOT,
-            DateTime appointedCarer)
-        {
-            //everytime someone call into the client service we make sure that the database is created
-            await Init();
-            var client = new Client
-            {
-                FirstName = firstname,
-                LastName = lastname,
-                DOB = dob,
-                Age = age,
-                Address = address,
-                MedicalConditions = medicalConditions,
-                AccidentHistory = accidentHistory,
-                TimeOnRE = timeOnRE,
-                JoinedRE = JoinedRE,
-                AppointedCarer = appointedCarer,
-                AppointedOT = appointedOT
-            };
 
-            var id = await db.InsertAsync(client);
-        }
 
         //Removes client from the clients table
         public static async Task RemoveClient(int id)
@@ -63,12 +39,12 @@ namespace ReablementApp.Services
                             .FirstOrDefaultAsync();
         }
 
-        // Method to get a client from the clients table in the databasse by their age
-        public static Task<Client> GetClientAgeAsync(int age)
+        // Method to get a client from the clients table in the databasse by their CHI Number
+        public static Task<Client> GetClientChiNumberAsync(string ChiNumber)
         {
-            // Get a specific client by age.
+            // Get a specific client by chi number.
             return db.Table<Client>()
-                            .Where(i => i.Age == age)
+                            .Where(i => i.ChiNumber == ChiNumber)
                             .FirstOrDefaultAsync();
         }
 
@@ -87,6 +63,7 @@ namespace ReablementApp.Services
                 return db.InsertAsync(client);
             }
         }
+
 
     }
 }

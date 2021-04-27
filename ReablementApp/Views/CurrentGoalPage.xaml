@@ -9,7 +9,7 @@
     xmlns:viewmodels="clr-namespace:ReablementApp.ViewModels"
     x:Name="currentGoalPage"
     x:DataType="viewmodels:CurrentGoalViewModel"
-    BackgroundColor="{StaticResource Background}">
+    BackgroundColor="White">
 
     <ContentPage.BindingContext>
         <viewmodels:CurrentGoalViewModel />
@@ -33,17 +33,17 @@
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="200" />
-                <RowDefinition Height="120" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="AUTO" />
+                <RowDefinition Height="AUTO" />
+                <RowDefinition Height="AUTO" />
             </Grid.RowDefinitions>
-            <Frame BackgroundColor="{StaticResource Primary}">
+            <Frame Grid.Row="0" BackgroundColor="{StaticResource Primary}">
                 <StackLayout>
                     <Label
                         FontSize="Large"
                         HorizontalOptions="CenterAndExpand"
                         Text="{Binding CurrentGoal}"
-                        TextColor="{StaticResource TextPrimary}" />
+                        TextColor="Black" />
                     <Image>
                         <Image.Source>
                             <FontImageSource
@@ -58,42 +58,38 @@
                         HorizontalOptions="CenterAndExpand"
                         Text="{Binding ClientFullName}"
                         TextColor="{StaticResource TextPrimary}" />
+                    <StackLayout Orientation="Horizontal">
+                        <Button
+                            BackgroundColor="{StaticResource ButtonBlue}"
+                            BorderColor="Black"
+                            BorderWidth="1"
+                            Command="{Binding BackToMainPageCommand}"
+                            FontSize="Large"
+                            HorizontalOptions="FillAndExpand"
+                            Text="Back"
+                            TextColor="{StaticResource TextPrimary}" />
+                        <Button
+                            BackgroundColor="{StaticResource ButtonGreen}"
+                            BorderColor="Black"
+                            BorderWidth="1"
+                            Command="{Binding AddTaskCommand}"
+                            FontSize="Large"
+                            HorizontalOptions="FillAndExpand"
+                            IsVisible="{Binding IsAddTaskVisible}"
+                            Text="Task"
+                            TextColor="Black" />
+
+
+                    </StackLayout>
+
+
 
                 </StackLayout>
 
             </Frame>
 
-            <StackLayout Grid.Row="1" Margin="10,0,10,0">
-                <Button
-                        BackgroundColor="{StaticResource ButtonBlue}"
-                        BorderColor="Black"
-                        BorderWidth="1"
-                        Command="{Binding BackToMainPageCommand}"
-                        FontSize="Large"
-                        HeightRequest="60"
-                        HorizontalOptions="FillAndExpand"
-                        Text="Back"
-                        TextColor="{StaticResource TextPrimary}" />
-
-                <Button
-                        x:Name="lvAddGoal"
-                        Grid.Row="1"
-                        BackgroundColor="{StaticResource ButtonGreen}"
-                        BorderColor="Black"
-                        BorderWidth="1"
-                        Command="{Binding AddTaskCommand}"
-                        FontSize="Large"
-                        HeightRequest="60"
-                        HorizontalOptions="FillAndExpand"
-                        Text="Add Task"
-                        TextColor="{StaticResource TextPrimary}" />
-
-
-            </StackLayout>
-             
             <ListView
-                x:Name="lvGoals"
-                Grid.Row="2"
+                Grid.Row="1"
                 BackgroundColor="Transparent"
                 CachingStrategy="RecycleElement"
                 GroupDisplayBinding="{Binding Key}"
@@ -130,10 +126,12 @@
                                                 FontSize="Large"
                                                 Style="{StaticResource UserIcon}"
                                                 Text="{x:Static helpers:FAIcons.Tasks}"
+                                                TextColor="Black"
                                                 VerticalOptions="Center" />
                                             <Label
                                                 FontSize="Large"
                                                 Text="{Binding GoalTasks}"
+                                                TextColor="Black"
                                                 VerticalOptions="Center" />
                                             <CheckBox Color="Black" />
                                         </StackLayout>
