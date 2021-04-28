@@ -57,7 +57,15 @@ namespace ReablementApp.Views
             Preferences.Set("loginSwitch", LoginSwitch.IsToggled);
             var switchResponse = Preferences.Get("switch", false);
 
-            User.CurrentUser = picker.SelectedItem.ToString();
+            if (picker.SelectedIndex == -1)
+            {
+                return;
+            }
+            else
+            {
+                User.CurrentUser = picker.SelectedItem.ToString();
+            }
+           
 
             if (User.CurrentUser == "Client")
             {
@@ -98,6 +106,7 @@ namespace ReablementApp.Views
             else
             {
                 Application.Current.MainPage = new ClientsPage();
+               
             }
 
 
